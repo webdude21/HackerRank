@@ -1,43 +1,22 @@
 package com.webdude.algorithms.sherlockandthevalidstring;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Solution {
 
     public static void main(String[] args) {
-        String input = readInputFromStdIn();
-        ArrayList<Integer> mappedString = convertToListOfOccurrences(input);
-        Boolean validString = checkIfValid(mappedString);
-
-        if (!validString) {
-            validString = checkIfCanBeModifiedToValid(mappedString);
-        }
-
-        PrintResult(validString);
+        PrintResult(checkIfValid(convertToListOfOccurrences(readInputFromStdIn())));
     }
 
     private static String readInputFromStdIn() {
         return new Scanner(System.in).nextLine();
     }
 
-    private static String readInputFromFile() {
-        File inputFile = new File("./src/com/webdude/algorithms/sherlockandthevalidstring/input12.txt");
-        String input = "";
-
-        try {
-            Scanner in = new Scanner(inputFile);
-            input = in.nextLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return input;
-    }
-
-    private static boolean checkIfCanBeModifiedToValid(ArrayList<Integer> listOfOccurrences) {
+    private static boolean checkIfCanBeModifiedToValid(List<Integer> listOfOccurrences) {
         for (int i = 0; i < listOfOccurrences.size(); i++) {
             int itemToTryWithout = listOfOccurrences.remove(i);
 
@@ -54,7 +33,7 @@ public class Solution {
         System.out.println(validString ? "YES" : "NO");
     }
 
-    public static boolean checkIfValid(ArrayList<Integer> listOfOccurrences) {
+    public static boolean checkIfValid(List<Integer> listOfOccurrences) {
         int lastOccurrence = 0;
 
         for (int occurrence : listOfOccurrences) {
@@ -67,12 +46,11 @@ public class Solution {
             }
         }
 
-        return true;
+        return checkIfCanBeModifiedToValid(listOfOccurrences);
     }
 
-    private static ArrayList<Integer> convertToListOfOccurrences(String input) {
+    private static List<Integer> convertToListOfOccurrences(String input) {
         Map<Character, Integer> map = new HashMap<>();
-        ArrayList<Integer> occurrences = new ArrayList<>();
 
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
@@ -83,8 +61,6 @@ public class Solution {
             }
         }
 
-        occurrences.addAll(map.values().stream().collect(Collectors.toList()));
-        Collections.sort(occurrences);
-        return occurrences;
+        return map.values().stream().collect(Collectors.toList());
     }
 }
