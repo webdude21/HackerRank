@@ -1,4 +1,4 @@
-package com.webdude.algorithms.SherlockandValidString;
+package com.webdude.algorithms.sherlockandthevalidstring;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Solution {
 
     public static void main(String[] args) {
-        String input = readInputFromStdIn();
+        String input = readInputFromFile();
         Map<Character, Integer> mappedString = readToMap(input);
         Boolean validString = checkIfValid(readToMap(input));
 
@@ -26,7 +26,7 @@ public class Solution {
     }
 
     private static String readInputFromFile() {
-        File inputFile = new File("./src/com/webdude/algorithms/SherlockandValidString/input12.txt");
+        File inputFile = new File("./src/com/webdude/algorithms/sherlockandthevalidstring/input12.txt");
         String input = "";
 
         try {
