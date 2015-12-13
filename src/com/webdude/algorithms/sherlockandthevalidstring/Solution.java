@@ -2,16 +2,15 @@ package com.webdude.algorithms.sherlockandthevalidstring;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Solution {
 
     public static void main(String[] args) {
-        String input = readInputFromFile();
-        Map<Character, Integer> mappedString = readToMap(input);
-        Boolean validString = checkIfValid(readToMap(input));
+        String input = readInputFromStdIn();
+        ArrayList<Integer> mappedString = convertToListOfOccurrences(input);
+        Boolean validString = checkIfValid(mappedString);
 
         if (!validString) {
             validString = checkIfCanBeModifiedToValid(mappedString);
@@ -21,8 +20,7 @@ public class Solution {
     }
 
     private static String readInputFromStdIn() {
-        Scanner in = new Scanner(System.in);
-        return in.nextLine();
+        return new Scanner(System.in).nextLine();
     }
 
     private static String readInputFromFile() {
@@ -39,20 +37,32 @@ public class Solution {
         return input;
     }
 
-    private static boolean checkIfCanBeModifiedToValid(Map<Character, Integer> input) {
-        int lastOccurrence = 0;
-        int movesNeededToFix = 0;
+    private static boolean checkIfCanBeModifiedToValid(ArrayList<Integer> listOfOccurrences) {
+        for (int i = 0; i < listOfOccurrences.size(); i++) {
+            int itemToTryWithout = listOfOccurrences.remove(i);
 
-        for (int occurrence : input.values()) {
+            if (checkIfValid(listOfOccurrences)) {
+                return true;
+            }
+
+            listOfOccurrences.add(i, itemToTryWithout);
+        }
+        return false;
+    }
+
+    private static void PrintResult(Boolean validString) {
+        System.out.println(validString ? "YES" : "NO");
+    }
+
+    public static boolean checkIfValid(ArrayList<Integer> listOfOccurrences) {
+        int lastOccurrence = 0;
+
+        for (int occurrence : listOfOccurrences) {
             if (lastOccurrence == 0) {
                 lastOccurrence = occurrence;
             }
 
             if (occurrence != lastOccurrence) {
-                movesNeededToFix++;
-            }
-
-            if (movesNeededToFix > 1) {
                 return false;
             }
         }
@@ -60,29 +70,9 @@ public class Solution {
         return true;
     }
 
-    private static void PrintResult(Boolean validString) {
-        System.out.println(validString ? "YES" : "NO");
-    }
-
-    public static boolean checkIfValid(Map<Character, Integer> map) {
-        int distinctChars = map.size();
-        int lastOccurrence = 0;
-
-        for (int occurrence : map.values()) {
-            if (lastOccurrence == 0) {
-                lastOccurrence = occurrence;
-            }
-
-            if (occurrence != lastOccurrence) {
-                return false;
-            }
-        }
-
-        return distinctChars == lastOccurrence;
-    }
-
-    private static Map<Character, Integer> readToMap(String input) {
+    private static ArrayList<Integer> convertToListOfOccurrences(String input) {
         Map<Character, Integer> map = new HashMap<>();
+        ArrayList<Integer> occurrences = new ArrayList<>();
 
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
@@ -93,6 +83,8 @@ public class Solution {
             }
         }
 
-        return map;
+        occurrences.addAll(map.values().stream().collect(Collectors.toList()));
+        Collections.sort(occurrences);
+        return occurrences;
     }
 }
