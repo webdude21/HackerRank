@@ -8,17 +8,15 @@ public class Solution {
         String input = new Scanner(System.in).next();
         int l = input.length();
         double squareRootOfL = Math.sqrt(l);
-        int floorL = (int) Math.floor(squareRootOfL) - 1;
-        int columns = (int) Math.ceil(squareRootOfL) - 1;
+        int columns = (int) Math.ceil(squareRootOfL);
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < input.length(); i++) {
-            if (i % columns == 0 && i != 0) {
-                stringBuilder.append(System.lineSeparator());
+        for (int col = 0; col < columns; col++) {
+            for (int i = col; i < l; i += columns) {
+                stringBuilder.append(input.charAt(i));
             }
-
-            stringBuilder.append(input.charAt(i));
+            stringBuilder.append(" ");
         }
 
         System.out.println(stringBuilder.toString());
