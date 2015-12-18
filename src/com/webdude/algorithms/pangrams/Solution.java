@@ -10,7 +10,7 @@ public class Solution {
 
         for (char alphabet = 'a'; alphabet <= 'z'; alphabet++) {
             if (!input.contains("" + alphabet)) {
-                output = "not pangram";
+                output = "not " + output;
                 break;
             }
         }
