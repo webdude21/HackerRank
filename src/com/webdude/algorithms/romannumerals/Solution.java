@@ -7,8 +7,8 @@ import java.util.TreeMap;
 
 public class Solution {
 
-    private static Map<Character, Integer> romanNumeral = getRomanNumerals();
-    private static TreeMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
+    private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
+    private static final TreeMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -33,8 +33,8 @@ public class Solution {
         int result = 0;
         char[] charsInRomanNumber = romanNumber.toCharArray();
 
-        for (int i = 0; i < charsInRomanNumber.length; i++) {
-            result += romanNumeral.get(charsInRomanNumber[i]);
+        for (char romanDigit : charsInRomanNumber) {
+            result += romanNumeral.get(romanDigit);
         }
 
         return result;
