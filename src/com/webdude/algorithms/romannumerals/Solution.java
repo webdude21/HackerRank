@@ -1,14 +1,11 @@
 package com.webdude.algorithms.romannumerals;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Solution {
 
     private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
-    private static final TreeMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
+    private static final NavigableMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -54,8 +51,8 @@ public class Solution {
         return romanNumerals;
     }
 
-    public static TreeMap<Integer, String> getOptimumConversionNumbers() {
-        TreeMap<Integer, String> optimalNumber = new TreeMap<>();
+    public static NavigableMap<Integer, String> getOptimumConversionNumbers() {
+        NavigableMap<Integer, String> optimalNumber = new TreeMap<>();
 
         optimalNumber.put(1000, "M");
         optimalNumber.put(900, "CM");
