@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Solution {
 
-    private static final ArrayList<Integer> primes = generatePrimes(1000);
-    private static int combinationsFound = 0;
+    private static final ArrayList<Integer> primes = generatePrimes(2000);
+    private static long combinationsFound = 0;
     private static final StringBuilder output = new StringBuilder();
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Solution {
         output.append(System.lineSeparator());
     }
 
-    public static int possibleSumOfPrimes(int number) {
+    public static long possibleSumOfPrimes(int number) {
         combinationsFound = 0;
         int suitablePrimes = 0;
 
@@ -45,7 +45,7 @@ public class Solution {
         return combinationsFound;
     }
 
-    public static void generateSumOfPrimesPermutation(int number, int currentSum, int startIndex, int primeLimit) {
+    public static void generateSumOfPrimesPermutation(int number, long currentSum, int startIndex, int primeLimit) {
         if (currentSum == number) {
             combinationsFound++;
             return;
@@ -56,10 +56,8 @@ public class Solution {
         }
 
         for (int i = startIndex; i < primeLimit; i++) {
-            int nextSum = currentSum + primes.get(i);
-            if (nextSum <= number) {
-                generateSumOfPrimesPermutation(number, nextSum, startIndex++, primeLimit);
-            }
+            long nextSum = currentSum + primes.get(i);
+            generateSumOfPrimesPermutation(number, nextSum, startIndex++, primeLimit);
         }
     }
 
