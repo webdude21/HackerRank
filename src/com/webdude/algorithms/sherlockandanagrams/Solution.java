@@ -7,26 +7,6 @@ public class Solution {
 
     private static Scanner scanner;
 
-	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
-        int testCases = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < testCases; i++) {
-            String input = scanner.nextLine();
-            System.out.println(getAnagramCount(input));
-        }
-    }
-
-    private static int getAnagramCount(String input) {
-        int count = 0;
-        for (int i = 0; i < input.length(); i++) {
-            for (int k = i + 1; k < input.length(); k++) {
-                int num = anagram(input.substring(i, k), input.substring(i + 1), input.substring(i, k).length());
-                count = count + num;
-            }
-        }
-        return count;
-    }
-
     static int anagram(String s1, String s2, int len) {
         int count = 0;
 
@@ -46,5 +26,25 @@ public class Solution {
             }
         }
         return count;
+    }
+
+    private static int getAnagramCount(String input) {
+        int count = 0;
+        for (int i = 0; i < input.length(); i++) {
+            for (int k = i + 1; k < input.length(); k++) {
+                int num = anagram(input.substring(i, k), input.substring(i + 1), input.substring(i, k).length());
+                count = count + num;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+        int testCases = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < testCases; i++) {
+            String input = scanner.nextLine();
+            System.out.println(getAnagramCount(input));
+        }
     }
 }
