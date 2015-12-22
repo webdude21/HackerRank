@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int testCases = Integer.parseInt(sc.nextLine());
+    private static Scanner scanner;
+
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+        int testCases = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < testCases; i++) {
-            String input = sc.nextLine();
+            String input = scanner.nextLine();
             System.out.println(getAnagramCount(input));
         }
     }

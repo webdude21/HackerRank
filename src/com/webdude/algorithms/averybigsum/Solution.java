@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+    private static Scanner scanner;
+
+	public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         long sum = 0;
 
         for (int i = 0; i < n; i++) {
-            sum += in.nextLong();
+            sum += scanner.nextLong();
         }
 
         System.out.println(sum);

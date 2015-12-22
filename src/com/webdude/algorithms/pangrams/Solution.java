@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        String input = new Scanner(System.in).nextLine().toLowerCase();
+    private static Scanner scanner;
+
+	public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+		String input = scanner.nextLine().toLowerCase();
         String output = "pangram";
 
         for (char alphabet = 'a'; alphabet <= 'z'; alphabet++) {

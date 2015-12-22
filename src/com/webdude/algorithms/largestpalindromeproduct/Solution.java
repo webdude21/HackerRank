@@ -7,6 +7,7 @@ import java.util.TreeSet;
 public class Solution {
 
     public static TreeSet<Integer> calculatedPalindromeProducts = calculatePalindromes();
+	private static Scanner scanner;
 
     public static void main(String[] args) {
         ArrayList<Integer> input = readInput();
@@ -14,7 +15,7 @@ public class Solution {
     }
 
     public static ArrayList<Integer> readInput() {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         int linesOfInput = scanner.nextInt();
         ArrayList<Integer> input = new ArrayList<>();
 

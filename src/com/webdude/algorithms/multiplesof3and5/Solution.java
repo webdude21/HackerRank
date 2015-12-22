@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Solution {
 
     private static StringBuilder stringBuilder = new StringBuilder();
+	private static Scanner scanner;
 
     public static long sumOfMultiples(int i, int j, int limit) {
         long s = --limit / i, t = limit / j, u = limit / (i * j);
@@ -12,7 +13,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         int linesOfInput = scanner.nextInt();
         String lineSeparator = System.lineSeparator();
 

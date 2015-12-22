@@ -8,9 +8,10 @@ public class Solution {
     private static final ArrayList<Integer> primes = generatePrimes(2000);
     private static long combinationsFound = 0;
     private static final StringBuilder output = new StringBuilder();
+	private static Scanner scanner;
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         int linesOfInput = scanner.nextInt();
         ArrayList<Integer> input = new ArrayList<>();
 

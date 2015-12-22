@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+    private static Scanner scanner;
+
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         double[] results = new double[]{0, 0, 0};
 
         for (int i = 0; i < n; i++) {
-            double currentNumber = in.nextDouble();
+            double currentNumber = scanner.nextDouble();
 
             if (currentNumber > 0) {
                 results[0]++;

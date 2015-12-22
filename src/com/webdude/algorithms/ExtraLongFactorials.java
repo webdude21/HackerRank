@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class ExtraLongFactorials {
 
     private static BigInteger one = BigInteger.valueOf(1);
+	private static Scanner scanner;
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println(calcFactorial(in.nextBigInteger()));
+        scanner = new Scanner(System.in);
+        System.out.println(calcFactorial(scanner.nextBigInteger()));
     }
 
     public static BigInteger calcFactorial(BigInteger input) {

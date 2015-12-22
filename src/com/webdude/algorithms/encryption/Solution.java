@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        String input = new Scanner(System.in).next();
+    private static Scanner scanner;
+
+	public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+		String input = scanner.next();
         int l = input.length();
         double squareRootOfL = Math.sqrt(l);
         int columns = (int) Math.ceil(squareRootOfL);

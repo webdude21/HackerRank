@@ -6,9 +6,10 @@ public class Solution {
 
     private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
     private static final NavigableMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
+	private static Scanner scanner;
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);
         int linesOfInput = scanner.nextInt();
         scanner.nextLine();
 
