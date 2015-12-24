@@ -6,20 +6,80 @@ public class Solution {
 
     private static Scanner scanner;
     private static int[][] matrix;
+    private static int maxConnectedArea = 0;
+    private static int currentConnectedArea = 0;
 
     public static void main(String[] args) {
         matrix = readInput();
         solve();
-        System.out.println(matrix);
+        if (currentConnectedArea > maxConnectedArea) {
+            maxConnectedArea = currentConnectedArea;
+        }
+        System.out.println(maxConnectedArea);
     }
 
     private static void solve() {
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
-                matrix[row][col] = scanner.nextInt();
+                if (matrix[row][col] > 0) {
+                    if (currentConnectedArea > maxConnectedArea) {
+                        maxConnectedArea = currentConnectedArea;
+                    }
+                    currentConnectedArea = 0;
+                    tryPath(row, col);
+                }
             }
         }
+    }
 
+    private static void tryPath(int row, int col) {
+        if (!canMove(row, col)) {
+            return;
+        }
+
+        currentConnectedArea++;
+        matrix[row][col] = 0;
+
+        // up
+        tryPath(row + 1, col);
+        // down
+        tryPath(row - 1, col);
+        // left
+        tryPath(row, col - 1);
+        // right
+        tryPath(row, col + 1);
+        // up-right
+        tryPath(row - 1, col + 1);
+        // down-right
+        tryPath(row + 1, col + 1);
+        // up-left
+        tryPath(row - 1, col - 1);
+        // down-left
+        tryPath(row + 1, col - 1);
+    }
+
+    private static boolean canMove(int row, int col) {
+        if (row < 0 || row >= matrix.length || col >= matrix[row].length || col < 0) {
+            return false;
+        }
+
+        if (matrix[row][col] <= 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static void printMatrix() {
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                System.out.print(matrix[row][col]);
+            }
+            System.out.println();
+        }
+
+        System.out.println("--------");
+        System.out.println(currentConnectedArea);
     }
 
     private static int[][] readInput() {
