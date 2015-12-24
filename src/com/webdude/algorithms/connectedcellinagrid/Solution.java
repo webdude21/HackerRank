@@ -71,9 +71,9 @@ public class Solution {
     }
 
     private static void printMatrix() {
-        for (int row = 0; row < matrix.length; row++) {
-            for (int col = 0; col < matrix[row].length; col++) {
-                System.out.print(matrix[row][col]);
+        for (int[] aMatrix : matrix) {
+            for (int anAMatrix : aMatrix) {
+                System.out.print(anAMatrix);
             }
             System.out.println();
         }
