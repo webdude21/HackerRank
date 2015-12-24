@@ -59,15 +59,8 @@ public class Solution {
     }
 
     private static boolean canMove(int row, int col) {
-        if (row < 0 || row >= matrix.length || col >= matrix[row].length || col < 0) {
-            return false;
-        }
-
-        if (matrix[row][col] <= 0) {
-            return false;
-        }
-
-        return true;
+        boolean isOutsideTheMatrix = row < 0 || row >= matrix.length || col >= matrix[row].length || col < 0;
+        return !isOutsideTheMatrix && matrix[row][col] > 0;
     }
 
     private static void printMatrix() {
