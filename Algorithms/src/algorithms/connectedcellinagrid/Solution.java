@@ -63,6 +63,7 @@ public class Solution {
         return !isOutsideTheMatrix && matrix[row][col] > 0;
     }
 
+    @SuppressWarnings("unused")
     private static void printMatrix() {
         for (int[] aMatrix : matrix) {
             for (int anAMatrix : aMatrix) {

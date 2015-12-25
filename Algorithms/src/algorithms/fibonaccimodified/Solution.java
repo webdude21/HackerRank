@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 public class Solution {
 
+    private static Scanner scanner;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         BigInteger a = scanner.nextBigInteger();
         BigInteger b = scanner.nextBigInteger();
         int n = scanner.nextInt() - 2;
