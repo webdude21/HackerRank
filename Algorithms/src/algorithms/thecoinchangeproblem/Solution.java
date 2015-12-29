@@ -10,7 +10,6 @@ public class Solution {
         scanner = new Scanner(System.in);
         int amount = scanner.nextInt();
         System.out.println(solve(amount));
-
     }
 
     public static long solve(int amount) {
