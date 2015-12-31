@@ -11,17 +11,24 @@ public class Solution {
         int testCases = scanner.nextInt();
 
         for (int i = 0; i < testCases; i++) {
-           System.out.println(solve(scanner.nextInt()));
+            System.out.println(solveTestCase(scanner.nextInt()));
         }
     }
 
-    private static char[] solve(int nextInt) {
-        int[] sharePrice = new int[nextInt];
-        
+    private static long solveTestCase(int nextInt) {
+        int maxFuturePrice = 0;
+        long profit = 0;
+        int[] solution = new int[nextInt];
+
         for (int i = 0; i < nextInt; i++) {
-           sharePrice[i] = scanner.nextInt();
+            solution[i] = scanner.nextInt();
         }
-        return null;
-    }
 
+        for (int i = solution.length - 1; i >= 0; i--) {
+            maxFuturePrice = Math.max(maxFuturePrice, solution[i]);
+            profit += maxFuturePrice - solution[i];
+        }
+
+        return profit;
+    }
 }
