@@ -1,22 +1,29 @@
-package algorithms.insertionsortpartone;
+package algorithms.insertionsortparttwo;
 
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Solution {
 
     private static Scanner scanner;
 
+    private static int[] array;
+
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        int[] array = new int[scanner.nextInt()];
+        array = new int[scanner.nextInt()];
 
         for (int i = 0; i < array.length; i++) {
             array[i] = scanner.nextInt();
         }
 
-        int digitToSort = array[array.length - 1];
+        IntStream.range(1, array.length).forEach(Solution::sortFromStartingFrom);
+    }
 
-        for (int i = array.length - 1; i >= 0; i--) {
+    private static void sortFromStartingFrom(int index) {
+        int digitToSort = array[index];
+
+        for (int i = index; i >= 0; i--) {
             if (i > 0 && digitToSort <= array[i - 1]) {
                 array[i] = array[i - 1];
             } else {
@@ -24,14 +31,11 @@ public class Solution {
                 printArray(array);
                 break;
             }
-
-            printArray(array);
         }
     }
 
     private static void printArray(int[] array) {
         StringBuilder sb = new StringBuilder();
-        
 
         for (int i = 0; i < array.length; i++) {
             sb.append(array[i]);
