@@ -9,7 +9,9 @@ import java.util.TreeMap;
 public class Solution {
 
     private static final NavigableMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
+
     private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
+
     private static Scanner scanner;
 
     public static int convertFromRoman(String romanNumber) {

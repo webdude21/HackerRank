@@ -14,13 +14,13 @@ public class Solution {
 
         for (int i = L; i <= R; i++) {
             for (int j = L; j <= R; j++) {
-                int currentValue = i^j;
-                if (currentValue > maxXor){
+                int currentValue = i ^ j;
+                if (currentValue > maxXor) {
                     maxXor = currentValue;
                 }
             }
         }
-        
+
         System.out.println(maxXor);
     }
 

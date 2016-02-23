@@ -19,7 +19,7 @@ public class Solution {
 
         for (Entry<Integer, Integer> entry : bMap.entrySet()) {
             int currentKey = entry.getKey();
-            
+
             if (!aMap.containsKey(currentKey) || !aMap.get(currentKey).equals(bMap.get(currentKey))) {
                 arrayList.add(currentKey);
             }

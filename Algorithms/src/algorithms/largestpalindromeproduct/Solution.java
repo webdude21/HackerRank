@@ -6,7 +6,8 @@ import java.util.TreeSet;
 
 public class Solution {
 
-    public static TreeSet<Integer> calculatedPalindromeProducts = calculatePalindromes();
+    private static TreeSet<Integer> calculatedPalindromeProducts = calculatePalindromes();
+
     private static Scanner scanner;
 
     public static TreeSet<Integer> calculatePalindromes() {

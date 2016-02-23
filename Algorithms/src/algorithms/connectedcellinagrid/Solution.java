@@ -5,8 +5,11 @@ import java.util.Scanner;
 public class Solution {
 
     private static Scanner scanner;
+
     private static int[][] matrix;
+
     private static int maxConnectedArea = 0;
+
     private static int currentConnectedArea = 0;
 
     public static void main(String[] args) {

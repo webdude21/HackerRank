@@ -15,7 +15,7 @@ public class Solution {
         }
     }
 
-    private static boolean passesTest(int arrayLength) {        
+    private static boolean passesTest(int arrayLength) {
         int[] testArray = new int[arrayLength];
 
         int rightNum = 0;

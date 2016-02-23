@@ -16,9 +16,9 @@ public class Solution {
         }
 
         int oddCountChars = 0;
-        
+
         for (boolean isOdd : charOddCount) {
-            if (isOdd){
+            if (isOdd) {
                 oddCountChars++;
             }
         }
