@@ -16,16 +16,16 @@ public class Solution {
     }
 
     private static int solveTestCase(int cycles) {
-        int treeHeigth = 1;
+        int treeHeight = 1;
 
         for (int i = 0; i < cycles; i++) {
             if (i % 2 == 0) {
-                treeHeigth *= 2;
+                treeHeight *= 2;
             } else {
-                treeHeigth += 1;
+                treeHeight += 1;
             }
         }
 
-        return treeHeigth;
+        return treeHeight;
     }
 }

@@ -22,9 +22,9 @@ public class Solution {
 
         table[0] = 1;
 
-        for (int i = 0; i < coinTypes.length; i++) {
-            for (int j = coinTypes[i]; j <= amount; j++) {
-                table[j] += table[j - coinTypes[i]];
+        for (int coinType : coinTypes) {
+            for (int j = coinType; j <= amount; j++) {
+                table[j] += table[j - coinType];
             }
         }
 
