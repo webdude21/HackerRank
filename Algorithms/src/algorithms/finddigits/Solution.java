@@ -1,6 +1,7 @@
 package algorithms.finddigits;
 
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Solution {
 
@@ -8,11 +9,7 @@ public class Solution {
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        int testCases = scanner.nextInt();
-
-        for (int i = 0; i < testCases; i++) {
-            System.out.println(testNumber(scanner.nextInt()));
-        }
+        IntStream.range(0, scanner.nextInt()).forEach(x -> System.out.println(testNumber(scanner.nextInt())));
     }
 
     public static int testNumber(int input) {
