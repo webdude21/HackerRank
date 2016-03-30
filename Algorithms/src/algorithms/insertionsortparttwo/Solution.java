@@ -17,10 +17,10 @@ public class Solution {
             array[i] = scanner.nextInt();
         }
 
-        IntStream.range(1, array.length).forEach(Solution::sortFromStartingFrom);
+        IntStream.range(1, array.length).forEach(Solution::sortStartingFrom);
     }
 
-    private static void sortFromStartingFrom(int index) {
+    private static void sortStartingFrom(int index) {
         int digitToSort = array[index];
 
         for (int i = index; i >= 0; i--) {
@@ -37,8 +37,8 @@ public class Solution {
     private static void printArray(int[] array) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++) {
-            sb.append(array[i]);
+        for (int anArray : array) {
+            sb.append(anArray);
             sb.append(" ");
         }
 

@@ -32,8 +32,8 @@ public class Solution {
     private static void printArray(int[] array) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++) {
-            sb.append(array[i]);
+        for (int anArray : array) {
+            sb.append(anArray);
             sb.append(" ");
         }
 

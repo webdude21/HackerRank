@@ -23,10 +23,10 @@ public class Solution {
             }
         }
 
-        for (int i = 0; i < results.length; i++) {
+        for (double result1 : results) {
             double result = 0;
-            if (results[i] > 0) {
-                result = results[i] / n;
+            if (result1 > 0) {
+                result = result1 / n;
             }
             System.out.println(result);
         }

@@ -1,6 +1,7 @@
 package algorithms.averybigsum;
 
 import java.util.Scanner;
+import java.util.stream.LongStream;
 
 public class Solution {
 
@@ -8,13 +9,6 @@ public class Solution {
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        long sum = 0;
-
-        for (int i = 0; i < n; i++) {
-            sum += scanner.nextLong();
-        }
-
-        System.out.println(sum);
+        System.out.println(LongStream.range(0, scanner.nextInt()).map(x -> scanner.nextLong()).sum());
     }
 }

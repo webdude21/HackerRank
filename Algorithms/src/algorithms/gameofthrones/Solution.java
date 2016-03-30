@@ -11,8 +11,8 @@ public class Solution {
         boolean[] charOddCount = new boolean[26];
         char[] input = scanner.nextLine().toCharArray();
 
-        for (int i = 0; i < input.length; i++) {
-            charOddCount[input[i] - 'a'] = !charOddCount[input[i] - 'a'];
+        for (char chr : input) {
+            charOddCount[chr - 'a'] = !charOddCount[chr - 'a'];
         }
 
         int oddCountChars = 0;
