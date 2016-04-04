@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Solution {
 
-    private static Scanner scanner;
-
     private static int[][] matrix;
 
     private static int maxConnectedArea = 0;
@@ -80,7 +78,7 @@ public class Solution {
     }
 
     private static int[][] readInput() {
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int rows = scanner.nextInt();
         int cols = scanner.nextInt();
         int[][] matrix = new int[rows][cols];

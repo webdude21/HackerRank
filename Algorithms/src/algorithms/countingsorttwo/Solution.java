@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 public class Solution {
 
-    private static Scanner scanner;
-
     public static void main(String[] args) {
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         int digitCount = scanner.nextInt();
         int[] countResult = new int[100];
@@ -15,7 +13,6 @@ public class Solution {
         for (int i = 0; i < digitCount; i++) {
             countResult[scanner.nextInt()]++;
         }
-        ;
 
         printArray(countResult);
     }

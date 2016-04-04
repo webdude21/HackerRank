@@ -14,7 +14,7 @@ public class Solution {
         
         for (int i = 0; i < digitCount; i++) {
             countResult[scanner.nextInt()]++;
-        };
+        }
         
         printArray(countResult);
     }
