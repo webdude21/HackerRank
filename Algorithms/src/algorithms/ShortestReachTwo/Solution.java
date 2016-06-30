@@ -1,19 +1,41 @@
 package algorithms.ShortestReachTwo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Solution {
 
     private static Scanner scanner;
 
-    public class Graph<T extends Comparable<T>> {
+    public static void main(String[] arguments) {
+        scanner = new Scanner(System.in);
+        int testCases = scanner.nextInt();
+        int nodes = scanner.nextInt();
+        int edges = scanner.nextInt();
+        Graph<Integer> graph = new Graph<>();
+
+        for (int i = 0; i < edges; i++) {
+            Node<Integer> source = graph.getNode(scanner.nextInt());
+            Node<Integer> target = graph.getNode(scanner.nextInt());
+            int weigth = scanner.nextInt();
+            graph.getEdgeList().add(new Edge<>(source, target, weigth));
+            source.addConnection(target, weigth);
+        }
+
+        System.out.println(graph);
+    }
+
+    public static class Graph<T extends Comparable<T>> {
         private final List<Edge<T>> edgeList;
-        private final List<Node<T>> nodeList;
+
+        public HashMap<T, Node<T>> getNodeList() {
+            return nodeList;
+        }
+
+        private final HashMap<T, Node<T>> nodeList;
 
         public Graph() {
-            nodeList = new ArrayList<>();
+            nodeList = new HashMap<>();
             edgeList = new ArrayList<>();
         }
 
@@ -21,12 +43,22 @@ public class Solution {
             return edgeList;
         }
 
-        public List<Node<T>> getNodeList() {
-            return nodeList;
+
+        public Node<T> getNode(T id) {
+            getNodeList().putIfAbsent(id, new Node<T>(id));
+            return getNodeList().get(id);
+        }
+
+        @Override
+        public String toString() {
+            return getEdgeList()
+                    .stream()
+                    .map(Edge::toString)
+                    .collect(Collectors.joining(String.format("%n")));
         }
     }
 
-    public class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
+    public static class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
 
         private Node<T> target;
         private Node<T> source;
@@ -64,7 +96,7 @@ public class Solution {
 
         @Override
         public String toString() {
-            return String.format("%s -(%s)-> %s", getTarget(), getWeight(), getSource());
+            return String.format("%s -(%s)-> %s", getSource().getId(), getWeight(), getTarget().getId());
         }
 
         @Override
@@ -86,7 +118,6 @@ public class Solution {
             return getWeight() == edge.getWeight() &&
                     getTarget().equals(edge.getTarget()) &&
                     getSource().equals(edge.getSource());
-
         }
 
         @Override
@@ -98,9 +129,15 @@ public class Solution {
         }
     }
 
-    public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+    public static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
         private T id;
+
+        public List<Edge<T>> getConnections() {
+            return connections;
+        }
+
+        private List<Edge<T>> connections;
 
         @Override
         public boolean equals(Object o) {
@@ -109,8 +146,38 @@ public class Solution {
 
             Node<?> node = (Node<?>) o;
 
-            return getId().equals(node.getId());
+            return node.getId().equals(getId());
 
+        }
+
+        void addConnection(Node<T> targetNode, int weight, boolean twoWay) {
+            if (targetNode == null) {
+                throw new IllegalArgumentException("Target must not be null");
+            }
+
+            if (targetNode.equals(this)) {
+                throw new IllegalArgumentException("Node may not connect to itself.");
+            }
+
+            if (weight < 0) {
+                throw new IllegalArgumentException("Weight must be positive.");
+            }
+
+            getConnections().add(new Edge<>(this, targetNode, weight));
+
+            if (twoWay) {
+                targetNode.addConnection(this, weight, false);
+            }
+        }
+
+        void addConnection(Node<T> targetNode, int weight) {
+            this.addConnection(targetNode, weight, false);
+        }
+
+
+        @Override
+        public String toString (){
+            return this.getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
         }
 
         @Override
@@ -119,6 +186,7 @@ public class Solution {
         }
 
         public Node(T id) {
+            this.connections = new ArrayList<>();
             setId(id);
         }
 
