@@ -1,6 +1,9 @@
 package algorithms.ShortestReachTwo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Solution {
@@ -25,26 +28,26 @@ public class Solution {
         System.out.println(graph);
     }
 
-    public static class Graph<T extends Comparable<T>> {
+    private static class Graph<T extends Comparable<T>> {
         private final List<Edge<T>> edgeList;
 
-        public HashMap<T, Node<T>> getNodeList() {
+        HashMap<T, Node<T>> getNodeList() {
             return nodeList;
         }
 
         private final HashMap<T, Node<T>> nodeList;
 
-        public Graph() {
+        Graph() {
             nodeList = new HashMap<>();
             edgeList = new ArrayList<>();
         }
 
-        public List<Edge<T>> getEdgeList() {
+        List<Edge<T>> getEdgeList() {
             return edgeList;
         }
 
 
-        public Node<T> getNode(T id) {
+        Node<T> getNode(T id) {
             getNodeList().putIfAbsent(id, new Node<T>(id));
             return getNodeList().get(id);
         }
@@ -58,39 +61,39 @@ public class Solution {
         }
     }
 
-    public static class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
+    static class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
 
         private Node<T> target;
         private Node<T> source;
         private int weight;
 
-        public Edge(Node<T> source, Node<T> target, int weight) {
+        Edge(Node<T> source, Node<T> target, int weight) {
             setSource(source);
             setTarget(target);
             setWeight(weight);
         }
 
-        public Node<T> getTarget() {
+        Node<T> getTarget() {
             return target;
         }
 
-        public void setTarget(Node<T> target) {
+        void setTarget(Node<T> target) {
             this.target = target;
         }
 
-        public Node<T> getSource() {
+        Node<T> getSource() {
             return source;
         }
 
-        public void setSource(Node<T> source) {
+        void setSource(Node<T> source) {
             this.source = source;
         }
 
-        public int getWeight() {
+        int getWeight() {
             return weight;
         }
 
-        public void setWeight(int weight) {
+        void setWeight(int weight) {
             this.weight = weight;
         }
 
@@ -129,11 +132,11 @@ public class Solution {
         }
     }
 
-    public static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+    static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
         private T id;
 
-        public List<Edge<T>> getConnections() {
+        List<Edge<T>> getConnections() {
             return connections;
         }
 
@@ -176,7 +179,7 @@ public class Solution {
 
 
         @Override
-        public String toString (){
+        public String toString() {
             return this.getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
         }
 
@@ -185,7 +188,7 @@ public class Solution {
             return getId().hashCode();
         }
 
-        public Node(T id) {
+        Node(T id) {
             this.connections = new ArrayList<>();
             setId(id);
         }
@@ -199,11 +202,11 @@ public class Solution {
             return 0;
         }
 
-        public T getId() {
+        T getId() {
             return id;
         }
 
-        public void setId(T id) {
+        void setId(T id) {
             this.id = id;
         }
     }
