@@ -10,7 +10,7 @@ public class Solution {
 	public static void main(String[] args) {
 		List<Integer> sticks = readInput();
 
-		while (sticks.size() > 0){
+		while (sticks.size() > 0) {
 			System.out.println(sticks.size());
 			sticks = reduceSticks(sticks);
 		}
