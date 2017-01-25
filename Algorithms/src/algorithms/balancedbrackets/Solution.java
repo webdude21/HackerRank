@@ -14,7 +14,6 @@ public class Solution {
 		bracketPairs.put('[', ']');
 		bracketPairs.put('(', ')');
 
-
 		Scanner in = new Scanner(System.in);
 		int lines = in.nextInt();
 
@@ -29,18 +28,19 @@ public class Solution {
 		}
 
 		char[] brackets = expression.toCharArray();
-		Stack<Character> s = new Stack<>();
+		Stack<Character> bracketsToClose = new Stack<>();
+
 		for (char bracket : brackets) {
 			if (bracketPairs.containsKey(bracket)) {
-				s.push(bracketPairs.get(bracket));
+				bracketsToClose.push(bracketPairs.get(bracket));
 			} else {
-				if (s.empty() || bracket != s.peek()) {
+				if (bracketsToClose.empty() || bracket != bracketsToClose.peek()) {
 					return false;
 				}
-				s.pop();
+				bracketsToClose.pop();
 			}
 		}
 
-		return s.empty();
+		return bracketsToClose.empty();
 	}
 }
