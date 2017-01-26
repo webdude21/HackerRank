@@ -1,4 +1,4 @@
-package algorithms.ShortestReachTwo;
+package algorithms.shortestreachtwo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
