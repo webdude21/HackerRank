@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Solution {
 
 	private static long makeChange(int[] coins, int amount) {
-		int[] solutions = new int[amount + 1];
+		long[] solutions = new long[amount + 1];
 
 		solutions[0] = 1;
 
