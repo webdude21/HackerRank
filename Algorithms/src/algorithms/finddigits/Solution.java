@@ -5,23 +5,23 @@ import java.util.stream.IntStream;
 
 public class Solution {
 
-    private static Scanner scanner;
+	private static Scanner scanner;
 
-    public static void main(String[] args) {
-        scanner = new Scanner(System.in);
-        IntStream.range(0, scanner.nextInt()).forEach(x -> System.out.println(testNumber(scanner.nextInt())));
-    }
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+		IntStream.range(0, scanner.nextInt()).forEach(x -> System.out.println(testNumber(scanner.nextInt())));
+	}
 
-    public static int testNumber(int input) {
-        char[] digits = String.valueOf(input).toCharArray();
-        int result = 0;
+	public static int testNumber(int input) {
+		char[] digits = String.valueOf(input).toCharArray();
+		int result = 0;
 
-        for (char c : digits) {
-            int digit = c - '0';
-            if (digit > 0 && input % digit == 0) {
-                result++;
-            }
-        }
-        return result;
-    }
+		for (char c : digits) {
+			int digit = c - '0';
+			if (digit > 0 && input % digit == 0) {
+				result++;
+			}
+		}
+		return result;
+	}
 }

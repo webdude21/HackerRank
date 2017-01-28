@@ -5,81 +5,84 @@ import java.util.Scanner;
 
 public class Solution {
 
-    private static long combinationsFound = 0;
-    private static final StringBuilder output = new StringBuilder();
-    private static final ArrayList<Integer> primes = generatePrimes(2000);
-    private static Scanner scanner;
+	private static final StringBuilder output = new StringBuilder();
 
-    public static ArrayList<Integer> generatePrimes(int max) {
-        ArrayList<Integer> primes = new ArrayList<>();
+	private static final ArrayList<Integer> primes = generatePrimes(2000);
 
-        for (int primeCandidate = 2; primeCandidate <= max; primeCandidate++) {
-            if (isPrime(primeCandidate)) {
-                primes.add(primeCandidate);
-            }
-        }
+	private static long combinationsFound = 0;
 
-        return primes;
-    }
+	private static Scanner scanner;
 
-    public static void generateSumOfPrimesPermutation(int number, long currentSum, int startIndex, int primeLimit) {
-        if (currentSum == number) {
-            combinationsFound++;
-            return;
-        }
+	public static ArrayList<Integer> generatePrimes(int max) {
+		ArrayList<Integer> primes = new ArrayList<>();
 
-        if (currentSum > number) {
-            return;
-        }
+		for (int primeCandidate = 2; primeCandidate <= max; primeCandidate++) {
+			if (isPrime(primeCandidate)) {
+				primes.add(primeCandidate);
+			}
+		}
 
-        for (int i = startIndex; i < primeLimit; i++) {
-            long nextSum = currentSum + primes.get(i);
-            generateSumOfPrimesPermutation(number, nextSum, startIndex++, primeLimit);
-        }
-    }
+		return primes;
+	}
 
-    private static boolean isPrime(int primeCandidate) {
-        for (int i = 2; i <= Math.sqrt(primeCandidate); i++) {
-            if (primeCandidate % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+	public static void generateSumOfPrimesPermutation(int number, long currentSum, int startIndex, int primeLimit) {
+		if (currentSum == number) {
+			combinationsFound++;
+			return;
+		}
 
-    public static void main(String[] args) {
-        scanner = new Scanner(System.in);
-        int linesOfInput = scanner.nextInt();
-        ArrayList<Integer> input = new ArrayList<>();
+		if (currentSum > number) {
+			return;
+		}
 
-        for (int i = 0; i < linesOfInput; i++) {
-            scanner.nextLine();
-            input.add(scanner.nextInt());
-        }
+		for (int i = startIndex; i < primeLimit; i++) {
+			long nextSum = currentSum + primes.get(i);
+			generateSumOfPrimesPermutation(number, nextSum, startIndex++, primeLimit);
+		}
+	}
 
-        input.forEach(Solution::printResult);
-        System.out.print(output.toString());
-    }
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+		int linesOfInput = scanner.nextInt();
+		ArrayList<Integer> input = new ArrayList<>();
 
-    public static long possibleSumOfPrimes(int number) {
-        combinationsFound = 0;
-        int suitablePrimes = 0;
+		for (int i = 0; i < linesOfInput; i++) {
+			scanner.nextLine();
+			input.add(scanner.nextInt());
+		}
 
-        for (Integer prime : primes) {
-            int possiblePrimes = prime;
-            if (possiblePrimes > number) {
-                break;
-            } else {
-                suitablePrimes++;
-            }
-        }
+		input.forEach(Solution::printResult);
+		System.out.print(output.toString());
+	}
 
-        generateSumOfPrimesPermutation(number, 0, 0, suitablePrimes);
-        return combinationsFound;
-    }
+	public static long possibleSumOfPrimes(int number) {
+		combinationsFound = 0;
+		int suitablePrimes = 0;
 
-    public static void printResult(int number) {
-        output.append(possibleSumOfPrimes(number));
-        output.append(System.lineSeparator());
-    }
+		for (Integer prime : primes) {
+			int possiblePrimes = prime;
+			if (possiblePrimes > number) {
+				break;
+			} else {
+				suitablePrimes++;
+			}
+		}
+
+		generateSumOfPrimesPermutation(number, 0, 0, suitablePrimes);
+		return combinationsFound;
+	}
+
+	public static void printResult(int number) {
+		output.append(possibleSumOfPrimes(number));
+		output.append(System.lineSeparator());
+	}
+
+	private static boolean isPrime(int primeCandidate) {
+		for (int i = 2; i <= Math.sqrt(primeCandidate); i++) {
+			if (primeCandidate % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

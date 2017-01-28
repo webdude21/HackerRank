@@ -8,6 +8,7 @@ public class Solution {
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
 		int arrayToSort[] = new int[n];
+
 		for (int i = 0; i < n; i++) {
 			arrayToSort[i] = in.nextInt();
 		}
@@ -27,6 +28,10 @@ public class Solution {
 			}
 		}
 
+		printResult(arrayToSort, totalSwaps);
+	}
+
+	private static void printResult(int[] arrayToSort, int totalSwaps) {
 		System.out.printf("Array is sorted in %d swaps.%n", totalSwaps);
 		System.out.printf("First Element: %d%n", arrayToSort[0]);
 		System.out.printf("Last Element: %d%n", arrayToSort[arrayToSort.length - 1]);

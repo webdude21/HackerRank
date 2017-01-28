@@ -14,6 +14,19 @@ public class Solution {
 		noteMap = convertToMap(note);
 	}
 
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int m = scanner.nextInt();
+		int n = scanner.nextInt();
+
+		scanner.nextLine();
+
+		Solution s = new Solution(scanner.nextLine(), scanner.nextLine());
+		scanner.close();
+
+		System.out.println(s.solve() ? "Yes" : "No");
+	}
+
 	private Map<String, Integer> convertToMap(String input) {
 		String[] words = input.split(" ");
 		Map<String, Integer> resultMap = new HashMap<>();
@@ -40,18 +53,5 @@ public class Solution {
 		}
 
 		return true;
-	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int m = scanner.nextInt();
-		int n = scanner.nextInt();
-
-		scanner.nextLine();
-
-		Solution s = new Solution(scanner.nextLine(), scanner.nextLine());
-		scanner.close();
-
-		System.out.println(s.solve() ? "Yes" : "No");
 	}
 }

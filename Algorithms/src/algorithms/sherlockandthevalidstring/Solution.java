@@ -8,58 +8,58 @@ import java.util.stream.Collectors;
 
 public class Solution {
 
-    private static Scanner scanner;
+	private static Scanner scanner;
 
-    private static boolean checkIfCanBeModifiedToValid(List<Integer> listOfOccurrences) {
-        for (int i = 0; i < listOfOccurrences.size(); i++) {
-            int itemToTryWithout = listOfOccurrences.remove(i);
+	public static boolean checkIfValid(List<Integer> listOfOccurrences) {
+		int lastOccurrence = 0;
 
-            if (checkIfValid(listOfOccurrences)) {
-                return true;
-            }
+		for (int occurrence : listOfOccurrences) {
+			if (lastOccurrence == 0) {
+				lastOccurrence = occurrence;
+			}
 
-            listOfOccurrences.add(i, itemToTryWithout);
-        }
-        return false;
-    }
+			if (occurrence != lastOccurrence) {
+				return false;
+			}
+		}
 
-    public static boolean checkIfValid(List<Integer> listOfOccurrences) {
-        int lastOccurrence = 0;
+		return checkIfCanBeModifiedToValid(listOfOccurrences);
+	}
 
-        for (int occurrence : listOfOccurrences) {
-            if (lastOccurrence == 0) {
-                lastOccurrence = occurrence;
-            }
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+		PrintResult(checkIfValid(convertToListOfOccurrences(scanner.nextLine())));
+	}
 
-            if (occurrence != lastOccurrence) {
-                return false;
-            }
-        }
+	private static boolean checkIfCanBeModifiedToValid(List<Integer> listOfOccurrences) {
+		for (int i = 0; i < listOfOccurrences.size(); i++) {
+			int itemToTryWithout = listOfOccurrences.remove(i);
 
-        return checkIfCanBeModifiedToValid(listOfOccurrences);
-    }
+			if (checkIfValid(listOfOccurrences)) {
+				return true;
+			}
 
-    private static List<Integer> convertToListOfOccurrences(String input) {
-        Map<Character, Integer> map = new HashMap<>();
+			listOfOccurrences.add(i, itemToTryWithout);
+		}
+		return false;
+	}
 
-        for (int i = 0; i < input.length(); i++) {
-            char currentChar = input.charAt(i);
-            if (!map.containsKey(currentChar)) {
-                map.put(currentChar, 1);
-            } else {
-                map.put(currentChar, map.get(currentChar) + 1);
-            }
-        }
+	private static List<Integer> convertToListOfOccurrences(String input) {
+		Map<Character, Integer> map = new HashMap<>();
 
-        return map.values().stream().collect(Collectors.toList());
-    }
+		for (int i = 0; i < input.length(); i++) {
+			char currentChar = input.charAt(i);
+			if (!map.containsKey(currentChar)) {
+				map.put(currentChar, 1);
+			} else {
+				map.put(currentChar, map.get(currentChar) + 1);
+			}
+		}
 
-    public static void main(String[] args) {
-        scanner = new Scanner(System.in);
-        PrintResult(checkIfValid(convertToListOfOccurrences(scanner.nextLine())));
-    }
+		return map.values().stream().collect(Collectors.toList());
+	}
 
-    private static void PrintResult(Boolean validString) {
-        System.out.println(validString ? "YES" : "NO");
-    }
+	private static void PrintResult(Boolean validString) {
+		System.out.println(validString ? "YES" : "NO");
+	}
 }

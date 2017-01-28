@@ -8,206 +8,206 @@ import java.util.stream.Collectors;
 
 public class Solution {
 
-    private static Scanner scanner;
+	private static Scanner scanner;
 
-    public static void main(String[] arguments) {
-        scanner = new Scanner(System.in);
-        int testCases = scanner.nextInt();
-        int nodes = scanner.nextInt();
-        int edges = scanner.nextInt();
-        Graph<Integer> graph = new Graph<>();
+	public static void main(String[] arguments) {
+		scanner = new Scanner(System.in);
+		int testCases = scanner.nextInt();
+		int nodes = scanner.nextInt();
+		int edges = scanner.nextInt();
+		Graph<Integer> graph = new Graph<>();
 
-        for (int i = 0; i < edges; i++) {
-            Node<Integer> source = graph.getNode(scanner.nextInt());
-            Node<Integer> target = graph.getNode(scanner.nextInt());
-            int weigth = scanner.nextInt();
-            graph.getEdgeList().add(new Edge<>(source, target, weigth));
-            source.addConnection(target, weigth);
-        }
+		for (int i = 0; i < edges; i++) {
+			Node<Integer> source = graph.getNode(scanner.nextInt());
+			Node<Integer> target = graph.getNode(scanner.nextInt());
+			int weigth = scanner.nextInt();
+			graph.getEdgeList().add(new Edge<>(source, target, weigth));
+			source.addConnection(target, weigth);
+		}
 
-        System.out.println(graph);
-    }
+		System.out.println(graph);
+	}
 
-    private static class Graph<T extends Comparable<T>> {
-        private final List<Edge<T>> edgeList;
+	private static class Graph<T extends Comparable<T>> {
+		private final List<Edge<T>> edgeList;
 
-        HashMap<T, Node<T>> getNodeList() {
-            return nodeList;
-        }
+		private final HashMap<T, Node<T>> nodeList;
 
-        private final HashMap<T, Node<T>> nodeList;
+		Graph() {
+			nodeList = new HashMap<>();
+			edgeList = new ArrayList<>();
+		}
 
-        Graph() {
-            nodeList = new HashMap<>();
-            edgeList = new ArrayList<>();
-        }
+		@Override
+		public String toString() {
+			return getEdgeList()
+					.stream()
+					.map(Edge::toString)
+					.collect(Collectors.joining(String.format("%n")));
+		}
 
-        List<Edge<T>> getEdgeList() {
-            return edgeList;
-        }
+		HashMap<T, Node<T>> getNodeList() {
+			return nodeList;
+		}
 
+		List<Edge<T>> getEdgeList() {
+			return edgeList;
+		}
 
-        Node<T> getNode(T id) {
-            getNodeList().putIfAbsent(id, new Node<T>(id));
-            return getNodeList().get(id);
-        }
+		Node<T> getNode(T id) {
+			getNodeList().putIfAbsent(id, new Node<T>(id));
+			return getNodeList().get(id);
+		}
+	}
 
-        @Override
-        public String toString() {
-            return getEdgeList()
-                    .stream()
-                    .map(Edge::toString)
-                    .collect(Collectors.joining(String.format("%n")));
-        }
-    }
+	static class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
 
-    static class Edge<T extends Comparable<T>> implements Comparable<Edge<T>> {
+		private Node<T> target;
 
-        private Node<T> target;
-        private Node<T> source;
-        private int weight;
+		private Node<T> source;
 
-        Edge(Node<T> source, Node<T> target, int weight) {
-            setSource(source);
-            setTarget(target);
-            setWeight(weight);
-        }
+		private int weight;
 
-        Node<T> getTarget() {
-            return target;
-        }
+		Edge(Node<T> source, Node<T> target, int weight) {
+			setSource(source);
+			setTarget(target);
+			setWeight(weight);
+		}
 
-        void setTarget(Node<T> target) {
-            this.target = target;
-        }
+		@Override
+		public String toString() {
+			return String.format("%s -(%s)-> %s", getSource().getId(), getWeight(), getTarget().getId());
+		}
 
-        Node<T> getSource() {
-            return source;
-        }
+		@Override
+		public int compareTo(Edge<T> o) {
+			if (o != null) {
+				return this.getWeight() - o.getWeight();
+			}
 
-        void setSource(Node<T> source) {
-            this.source = source;
-        }
+			return 0;
+		}
 
-        int getWeight() {
-            return weight;
-        }
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (!(o instanceof Edge)) return false;
 
-        void setWeight(int weight) {
-            this.weight = weight;
-        }
+			Edge<?> edge = (Edge<?>) o;
 
-        @Override
-        public String toString() {
-            return String.format("%s -(%s)-> %s", getSource().getId(), getWeight(), getTarget().getId());
-        }
+			return getWeight() == edge.getWeight() &&
+					getTarget().equals(edge.getTarget()) &&
+					getSource().equals(edge.getSource());
+		}
 
-        @Override
-        public int compareTo(Edge<T> o) {
-            if (o != null) {
-                return this.getWeight() - o.getWeight();
-            }
+		@Override
+		public int hashCode() {
+			int result = getTarget().hashCode();
+			result = 31 * result + getSource().hashCode();
+			result = 31 * result + getWeight();
+			return result;
+		}
 
-            return 0;
-        }
+		Node<T> getTarget() {
+			return target;
+		}
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Edge)) return false;
+		void setTarget(Node<T> target) {
+			this.target = target;
+		}
 
-            Edge<?> edge = (Edge<?>) o;
+		Node<T> getSource() {
+			return source;
+		}
 
-            return getWeight() == edge.getWeight() &&
-                    getTarget().equals(edge.getTarget()) &&
-                    getSource().equals(edge.getSource());
-        }
+		void setSource(Node<T> source) {
+			this.source = source;
+		}
 
-        @Override
-        public int hashCode() {
-            int result = getTarget().hashCode();
-            result = 31 * result + getSource().hashCode();
-            result = 31 * result + getWeight();
-            return result;
-        }
-    }
+		int getWeight() {
+			return weight;
+		}
 
-    static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+		void setWeight(int weight) {
+			this.weight = weight;
+		}
+	}
 
-        private T id;
+	static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
-        List<Edge<T>> getConnections() {
-            return connections;
-        }
+		private T id;
 
-        private List<Edge<T>> connections;
+		private List<Edge<T>> connections;
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Node)) return false;
+		Node(T id) {
+			this.connections = new ArrayList<>();
+			setId(id);
+		}
 
-            Node<?> node = (Node<?>) o;
+		@Override
+		public boolean equals(Object o) {
+			if (this == o) return true;
+			if (!(o instanceof Node)) return false;
 
-            return node.getId().equals(getId());
+			Node<?> node = (Node<?>) o;
 
-        }
+			return node.getId().equals(getId());
 
-        void addConnection(Node<T> targetNode, int weight, boolean twoWay) {
-            if (targetNode == null) {
-                throw new IllegalArgumentException("Target must not be null");
-            }
+		}
 
-            if (targetNode.equals(this)) {
-                throw new IllegalArgumentException("Node may not connect to itself.");
-            }
+		@Override
+		public String toString() {
+			return this.getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
+		}
 
-            if (weight < 0) {
-                throw new IllegalArgumentException("Weight must be positive.");
-            }
+		@Override
+		public int hashCode() {
+			return getId().hashCode();
+		}
 
-            getConnections().add(new Edge<>(this, targetNode, weight));
+		@Override
+		public int compareTo(Node<T> o) {
+			if (o != null) {
+				o.getId().compareTo(this.getId());
+			}
 
-            if (twoWay) {
-                targetNode.addConnection(this, weight, false);
-            }
-        }
+			return 0;
+		}
 
-        void addConnection(Node<T> targetNode, int weight) {
-            this.addConnection(targetNode, weight, false);
-        }
+		List<Edge<T>> getConnections() {
+			return connections;
+		}
 
+		void addConnection(Node<T> targetNode, int weight, boolean twoWay) {
+			if (targetNode == null) {
+				throw new IllegalArgumentException("Target must not be null");
+			}
 
-        @Override
-        public String toString() {
-            return this.getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
-        }
+			if (targetNode.equals(this)) {
+				throw new IllegalArgumentException("Node may not connect to itself.");
+			}
 
-        @Override
-        public int hashCode() {
-            return getId().hashCode();
-        }
+			if (weight < 0) {
+				throw new IllegalArgumentException("Weight must be positive.");
+			}
 
-        Node(T id) {
-            this.connections = new ArrayList<>();
-            setId(id);
-        }
+			getConnections().add(new Edge<>(this, targetNode, weight));
 
-        @Override
-        public int compareTo(Node<T> o) {
-            if (o != null) {
-                o.getId().compareTo(this.getId());
-            }
+			if (twoWay) {
+				targetNode.addConnection(this, weight, false);
+			}
+		}
 
-            return 0;
-        }
+		void addConnection(Node<T> targetNode, int weight) {
+			this.addConnection(targetNode, weight, false);
+		}
 
-        T getId() {
-            return id;
-        }
+		T getId() {
+			return id;
+		}
 
-        void setId(T id) {
-            this.id = id;
-        }
-    }
+		void setId(T id) {
+			this.id = id;
+		}
+	}
 }

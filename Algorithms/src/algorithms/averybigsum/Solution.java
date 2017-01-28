@@ -5,10 +5,10 @@ import java.util.stream.LongStream;
 
 public class Solution {
 
-    private static Scanner scanner;
+	private static Scanner scanner;
 
-    public static void main(String[] args) {
-        scanner = new Scanner(System.in);
-        System.out.println(LongStream.range(0, scanner.nextInt()).map(x -> scanner.nextLong()).sum());
-    }
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+		System.out.println(LongStream.range(0, scanner.nextInt()).map(x -> scanner.nextLong()).sum());
+	}
 }
