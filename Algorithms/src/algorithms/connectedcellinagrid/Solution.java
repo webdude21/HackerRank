@@ -13,9 +13,7 @@ public class Solution {
 	public static void main(String[] args) {
 		matrix = readInput();
 		solve();
-		if (currentConnectedArea > maxConnectedArea) {
-			maxConnectedArea = currentConnectedArea;
-		}
+		adjustMaxConnectedArea();
 		System.out.println(maxConnectedArea);
 	}
 
@@ -23,13 +21,17 @@ public class Solution {
 		for (int row = 0; row < matrix.length; row++) {
 			for (int col = 0; col < matrix[row].length; col++) {
 				if (matrix[row][col] > 0) {
-					if (currentConnectedArea > maxConnectedArea) {
-						maxConnectedArea = currentConnectedArea;
-					}
+					adjustMaxConnectedArea();
 					currentConnectedArea = 0;
 					tryPath(row, col);
 				}
 			}
+		}
+	}
+
+	private static void adjustMaxConnectedArea() {
+		if (currentConnectedArea > maxConnectedArea) {
+			maxConnectedArea = currentConnectedArea;
 		}
 	}
 
@@ -38,8 +40,7 @@ public class Solution {
 			return;
 		}
 
-		currentConnectedArea++;
-		matrix[row][col] = 0;
+		move(row, col);
 
 		// up
 		tryPath(row + 1, col);
@@ -57,6 +58,12 @@ public class Solution {
 		tryPath(row - 1, col - 1);
 		// down-left
 		tryPath(row + 1, col - 1);
+
+	}
+
+	private static void move(int row, int col) {
+		currentConnectedArea++;
+		matrix[row][col] = 0;
 	}
 
 	private static boolean canMove(int row, int col) {
