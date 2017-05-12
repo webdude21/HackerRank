@@ -3,12 +3,10 @@ package algorithms.fibonaccimodified;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		BigInteger a = scanner.nextBigInteger();
 		BigInteger b = scanner.nextBigInteger();
 		int n = scanner.nextInt() - 2;

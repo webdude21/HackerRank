@@ -3,14 +3,12 @@ package algorithms.insertionsortparttwo;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	private static int[] array;
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		array = new int[scanner.nextInt()];
 
 		for (int i = 0; i < array.length; i++) {

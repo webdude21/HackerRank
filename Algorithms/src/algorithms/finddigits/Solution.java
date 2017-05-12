@@ -3,7 +3,7 @@ package algorithms.finddigits;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 
@@ -12,7 +12,7 @@ public class Solution {
 		IntStream.range(0, scanner.nextInt()).forEach(x -> System.out.println(testNumber(scanner.nextInt())));
 	}
 
-	public static int testNumber(int input) {
+	private static int testNumber(int input) {
 		char[] digits = String.valueOf(input).toCharArray();
 		int result = 0;
 

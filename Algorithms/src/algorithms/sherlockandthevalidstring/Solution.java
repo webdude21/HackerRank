@@ -1,16 +1,10 @@
 package algorithms.sherlockandthevalidstring;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class Solution {
+class Solution {
 
-	private static Scanner scanner;
-
-	public static boolean checkIfValid(List<Integer> listOfOccurrences) {
+	private static boolean checkIfValid(List<Integer> listOfOccurrences) {
 		int lastOccurrence = 0;
 
 		for (int occurrence : listOfOccurrences) {
@@ -27,7 +21,7 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		PrintResult(checkIfValid(convertToListOfOccurrences(scanner.nextLine())));
 	}
 
@@ -56,7 +50,7 @@ public class Solution {
 			}
 		}
 
-		return map.values().stream().collect(Collectors.toList());
+		return new ArrayList<>(map.values());
 	}
 
 	private static void PrintResult(Boolean validString) {

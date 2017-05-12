@@ -3,7 +3,7 @@ package algorithms.averybigsum;
 import java.util.Scanner;
 import java.util.stream.LongStream;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 

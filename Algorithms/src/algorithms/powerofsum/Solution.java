@@ -2,13 +2,13 @@ package algorithms.powerofsum;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static int power;
 
 	private static int target;
 
-	private static Scanner scanner = new Scanner(System.in);
+	private static final Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		target = scanner.nextInt();

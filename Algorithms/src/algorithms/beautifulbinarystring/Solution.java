@@ -2,7 +2,7 @@ package algorithms.beautifulbinarystring;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static final String UGLY = "010";
 

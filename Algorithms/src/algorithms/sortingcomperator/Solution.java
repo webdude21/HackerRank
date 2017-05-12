@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 class Player {
-	String name;
+	final String name;
 
-	int score;
+	final int score;
 
 	Player(String name, int score) {
 		this.name = name;

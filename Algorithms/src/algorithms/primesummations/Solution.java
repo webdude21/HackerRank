@@ -3,7 +3,7 @@ package algorithms.primesummations;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static final StringBuilder output = new StringBuilder();
 
@@ -11,9 +11,7 @@ public class Solution {
 
 	private static long combinationsFound = 0;
 
-	private static Scanner scanner;
-
-	public static ArrayList<Integer> generatePrimes(int max) {
+	private static ArrayList<Integer> generatePrimes(int max) {
 		ArrayList<Integer> primes = new ArrayList<>();
 
 		for (int primeCandidate = 2; primeCandidate <= max; primeCandidate++) {
@@ -25,7 +23,7 @@ public class Solution {
 		return primes;
 	}
 
-	public static void generateSumOfPrimesPermutation(int number, long currentSum, int startIndex, int primeLimit) {
+	private static void generateSumOfPrimesPermutation(int number, long currentSum, int startIndex, int primeLimit) {
 		if (currentSum == number) {
 			combinationsFound++;
 			return;
@@ -42,7 +40,7 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int linesOfInput = scanner.nextInt();
 		ArrayList<Integer> input = new ArrayList<>();
 
@@ -55,7 +53,7 @@ public class Solution {
 		System.out.print(output.toString());
 	}
 
-	public static long possibleSumOfPrimes(int number) {
+	private static long possibleSumOfPrimes(int number) {
 		combinationsFound = 0;
 		int suitablePrimes = 0;
 
@@ -72,7 +70,7 @@ public class Solution {
 		return combinationsFound;
 	}
 
-	public static void printResult(int number) {
+	private static void printResult(int number) {
 		output.append(possibleSumOfPrimes(number));
 		output.append(System.lineSeparator());
 	}

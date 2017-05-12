@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 

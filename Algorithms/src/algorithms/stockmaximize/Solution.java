@@ -2,7 +2,7 @@ package algorithms.stockmaximize;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 

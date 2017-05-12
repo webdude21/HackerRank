@@ -3,7 +3,7 @@ package algorithms.linkedlistcycle;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solution {
+class Solution {
 
 	boolean hasCycle(Node head) {
 		Set<Node> visitedNodes = new HashSet<>();

@@ -2,12 +2,10 @@ package algorithms.pangrams;
 
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine().toLowerCase();
 		String output = "pangram";
 

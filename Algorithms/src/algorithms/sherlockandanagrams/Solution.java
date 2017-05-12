@@ -3,12 +3,10 @@ package algorithms.sherlockandanagrams;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int testCases = Integer.parseInt(scanner.nextLine());
 		for (int i = 0; i < testCases; i++) {
 			String input = scanner.nextLine();
@@ -16,7 +14,7 @@ public class Solution {
 		}
 	}
 
-	static int anagram(String s1, String s2, int len) {
+	private static int anagram(String s1, String s2, int len) {
 		int count = 0;
 
 		char[] c1 = s1.toCharArray();

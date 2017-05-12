@@ -2,13 +2,13 @@ package algorithms.permutations;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
-	private static Scanner scanner = new Scanner(System.in);
+	private static final Scanner scanner = new Scanner(System.in);
 
 	private static int permutationCount = 0;
 
-	private static StringBuilder stringBuilder = new StringBuilder();
+	private static final StringBuilder stringBuilder = new StringBuilder();
 
 	public static void main(String[] args) {
 		int n = scanner.nextInt();

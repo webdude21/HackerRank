@@ -2,7 +2,7 @@ package algorithms.connectedcellinagrid;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static int[][] matrix;
 

@@ -2,12 +2,10 @@ package algorithms.plusminus;
 
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		double[] results = new double[]{0, 0, 0};
 

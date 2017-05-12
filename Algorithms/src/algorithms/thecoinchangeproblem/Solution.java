@@ -2,7 +2,7 @@ package algorithms.thecoinchangeproblem;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 
@@ -12,7 +12,7 @@ public class Solution {
 		System.out.println(solve(amount));
 	}
 
-	public static long solve(int amount) {
+	private static long solve(int amount) {
 		int[] coinTypes = new int[scanner.nextInt()];
 		long[] table = new long[amount + 1];
 

@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Solution {
+class Solution {
 
-	private static Map<Character, Character> bracketPairs = new HashMap<>();
+	private static final Map<Character, Character> bracketPairs = new HashMap<>();
 
 	public static void main(String[] args) {
 		bracketPairs.put('{', '}');

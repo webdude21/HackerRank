@@ -6,12 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] arguments) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int testCases = scanner.nextInt();
 		int nodes = scanner.nextInt();
 		int edges = scanner.nextInt();
@@ -20,9 +18,9 @@ public class Solution {
 		for (int i = 0; i < edges; i++) {
 			Node<Integer> source = graph.getNode(scanner.nextInt());
 			Node<Integer> target = graph.getNode(scanner.nextInt());
-			int weigth = scanner.nextInt();
-			graph.getEdgeList().add(new Edge<>(source, target, weigth));
-			source.addConnection(target, weigth);
+			int weight = scanner.nextInt();
+			graph.getEdgeList().add(new Edge<>(source, target, weight));
+			source.addConnection(target, weight);
 		}
 
 		System.out.println(graph);
@@ -55,7 +53,7 @@ public class Solution {
 		}
 
 		Node<T> getNode(T id) {
-			getNodeList().putIfAbsent(id, new Node<T>(id));
+			getNodeList().putIfAbsent(id, new Node<>(id));
 			return getNodeList().get(id);
 		}
 	}
@@ -137,7 +135,7 @@ public class Solution {
 
 		private T id;
 
-		private List<Edge<T>> connections;
+		private final List<Edge<T>> connections;
 
 		Node(T id) {
 			this.connections = new ArrayList<>();

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static int numberNeeded(String first, String second) {
 		Map<Character, Integer> charMap = getCharacterMap(first);

@@ -2,7 +2,7 @@ package algorithms.sansaandxor;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 
@@ -15,7 +15,7 @@ public class Solution {
 		}
 	}
 
-	public static long solveTestCase() {
+	private static long solveTestCase() {
 		long result = 0;
 		long arrayLength = scanner.nextLong();
 

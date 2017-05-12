@@ -2,12 +2,10 @@ package algorithms.gameofthrones;
 
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		boolean[] charOddCount = new boolean[26];
 		char[] input = scanner.nextLine().toCharArray();
 

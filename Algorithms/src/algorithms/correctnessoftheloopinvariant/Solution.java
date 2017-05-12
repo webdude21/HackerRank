@@ -3,7 +3,7 @@ package algorithms.correctnessoftheloopinvariant;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Solution {
+class Solution {
 
 	private static int[] array;
 

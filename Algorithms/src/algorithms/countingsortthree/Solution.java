@@ -2,12 +2,10 @@ package algorithms.countingsortthree;
 
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 
 		int numberCount[] = new int[100];
@@ -20,7 +18,7 @@ public class Solution {
 			}
 		}
 
-		int sum = 0;
+		int sum;
 
 		for (int i = 0; i < numberCount.length; i++) {
 			sum = 0;

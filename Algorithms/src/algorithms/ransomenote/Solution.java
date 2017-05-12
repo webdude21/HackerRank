@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Solution {
-	private Map<String, Integer> magazineMap;
+class Solution {
+	private final Map<String, Integer> magazineMap;
 
-	private Map<String, Integer> noteMap;
+	private final Map<String, Integer> noteMap;
 
-	public Solution(String magazine, String note) {
+	private Solution(String magazine, String note) {
 		magazineMap = convertToMap(magazine);
 		noteMap = convertToMap(note);
 	}

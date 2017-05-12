@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
-	private static Map<Integer, Map<Integer, Integer>> connectionsList = new HashMap<>();
+	private static final Map<Integer, Map<Integer, Integer>> connectionsList = new HashMap<>();
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -19,11 +19,11 @@ public class Solution {
 		}
 	}
 
-	public static void addConnection(int sourceEdge, int targetEdge, int weight) {
+	private static void addConnection(int sourceEdge, int targetEdge, int weight) {
 		getNode(sourceEdge).put(getNode(targetEdge).get(targetEdge), weight);
 	}
 
-	public static Map<Integer, Integer> getNode(int id) {
+	private static Map<Integer, Integer> getNode(int id) {
 		connectionsList.putIfAbsent(id, new HashMap<>());
 		return connectionsList.get(id);
 	}

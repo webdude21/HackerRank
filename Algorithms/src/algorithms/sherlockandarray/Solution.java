@@ -2,7 +2,7 @@ package algorithms.sherlockandarray;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 
@@ -20,7 +20,7 @@ public class Solution {
 
 		int rightNum = 0;
 		int leftNum = 0;
-		int currentNum = 0;
+		int currentNum;
 
 		for (int i = 0; i < testArray.length; i++) {
 			currentNum = scanner.nextInt();

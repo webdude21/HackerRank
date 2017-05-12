@@ -2,7 +2,7 @@ package algorithms.coinchangerecursive;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static long solutionCount = 0;
 

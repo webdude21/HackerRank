@@ -2,12 +2,10 @@ package algorithms.tutorialintro;
 
 import java.util.Scanner;
 
-public class Solution {
-
-	private static Scanner scanner;
+class Solution {
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int valueToLookFor = scanner.nextInt();
 		int arraySize = scanner.nextInt();
 

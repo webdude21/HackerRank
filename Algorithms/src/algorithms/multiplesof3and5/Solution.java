@@ -2,14 +2,12 @@ package algorithms.multiplesof3and5;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
-	private static Scanner scanner;
-
-	private static StringBuilder stringBuilder = new StringBuilder();
+	private static final StringBuilder stringBuilder = new StringBuilder();
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int linesOfInput = scanner.nextInt();
 		String lineSeparator = System.lineSeparator();
 
@@ -22,7 +20,7 @@ public class Solution {
 		System.out.print(stringBuilder.toString());
 	}
 
-	public static long sumOfMultiples(int i, int j, int limit) {
+	private static long sumOfMultiples(int i, int j, int limit) {
 		long s = --limit / i, t = limit / j, u = limit / (i * j);
 		return (i * (s * (s + 1) / 2)) + (j * (t * (t + 1) / 2)) - ((i * j) * (u * (u + 1) / 2));
 	}

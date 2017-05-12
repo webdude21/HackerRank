@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class Solution {
+class Solution {
 
 	private static Scanner scanner;
 

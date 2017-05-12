@@ -1,8 +1,8 @@
 package algorithms.checkforbinarytree;
 
-public class Solution {
+class Solution {
 
-	boolean check(Node n, int min, int max) {
+	private boolean check(Node n, int min, int max) {
 		return n == null || !(n.data <= min || n.data >= max) && check(n.left, min, n.data) && check(n.right, n.data, max);
 	}
 

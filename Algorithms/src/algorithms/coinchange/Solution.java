@@ -2,7 +2,7 @@ package algorithms.coinchange;
 
 import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
 	private static long makeChange(int[] coins, int amount) {
 		long[] solutions = new long[amount + 1];

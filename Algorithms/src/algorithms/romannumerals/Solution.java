@@ -2,15 +2,13 @@ package algorithms.romannumerals;
 
 import java.util.*;
 
-public class Solution {
+class Solution {
 
 	private static final NavigableMap<Integer, String> optimalNumberUsage = getOptimumConversionNumbers();
 
 	private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
 
-	private static Scanner scanner;
-
-	public static int convertFromRoman(String romanNumber) {
+	private static int convertFromRoman(String romanNumber) {
 		int result = 0;
 		char[] charsInRomanNumber = romanNumber.toCharArray();
 
@@ -21,7 +19,7 @@ public class Solution {
 		return result;
 	}
 
-	public static String convertToRoman(int number) {
+	private static String convertToRoman(int number) {
 		int startNumber = optimalNumberUsage.floorKey(number);
 		if (number == startNumber) {
 			return optimalNumberUsage.get(number);
@@ -29,7 +27,7 @@ public class Solution {
 		return optimalNumberUsage.get(startNumber) + convertToRoman(number - startNumber);
 	}
 
-	public static NavigableMap<Integer, String> getOptimumConversionNumbers() {
+	private static NavigableMap<Integer, String> getOptimumConversionNumbers() {
 		NavigableMap<Integer, String> optimalNumber = new TreeMap<>();
 
 		optimalNumber.put(1000, "M");
@@ -49,7 +47,7 @@ public class Solution {
 		return optimalNumber;
 	}
 
-	public static Map<Character, Integer> getRomanNumerals() {
+	private static Map<Character, Integer> getRomanNumerals() {
 		Map<Character, Integer> romanNumerals = new HashMap<>();
 
 		romanNumerals.put('I', 1);
@@ -64,7 +62,7 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		int linesOfInput = scanner.nextInt();
 		scanner.nextLine();
 
