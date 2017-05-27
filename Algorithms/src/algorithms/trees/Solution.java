@@ -15,6 +15,7 @@ public class Solution {
 		System.out.printf("The root is %s%n", tree.findRoot());
 		System.out.printf("The leafs are %s%n", tree.formatOutput(tree.findLeafs()));
 		System.out.printf("The intermediates are %s%n", tree.formatOutput(tree.findIntermediates()));
+		System.out.println(tree);
 	}
 
 	private static void readInput() {
