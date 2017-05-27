@@ -8,6 +8,17 @@ class Solution {
 
 	private static final Map<Character, Integer> romanNumeral = getRomanNumerals();
 
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int linesOfInput = scanner.nextInt();
+		scanner.nextLine();
+
+		for (int i = 0; i < linesOfInput; i++) {
+			String output = convertToRoman(convertFromRoman(scanner.nextLine()));
+			System.out.println(output);
+		}
+	}
+
 	private static int convertFromRoman(String romanNumber) {
 		int result = 0;
 		char[] charsInRomanNumber = romanNumber.toCharArray();
@@ -59,16 +70,5 @@ class Solution {
 		romanNumerals.put('M', 1000);
 
 		return romanNumerals;
-	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int linesOfInput = scanner.nextInt();
-		scanner.nextLine();
-
-		for (int i = 0; i < linesOfInput; i++) {
-			String output = convertToRoman(convertFromRoman(scanner.nextLine()));
-			System.out.println(output);
-		}
 	}
 }

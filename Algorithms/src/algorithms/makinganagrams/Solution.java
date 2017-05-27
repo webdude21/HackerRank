@@ -6,6 +6,13 @@ import java.util.Scanner;
 
 class Solution {
 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String a = in.next();
+		String b = in.next();
+		System.out.println(numberNeeded(a, b));
+	}
+
 	private static int numberNeeded(String first, String second) {
 		Map<Character, Integer> charMap = getCharacterMap(first);
 
@@ -44,12 +51,5 @@ class Solution {
 		}
 
 		return charMap;
-	}
-
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		String a = in.next();
-		String b = in.next();
-		System.out.println(numberNeeded(a, b));
 	}
 }

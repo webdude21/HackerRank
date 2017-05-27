@@ -4,6 +4,11 @@ import java.util.*;
 
 class Solution {
 
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		PrintResult(checkIfValid(convertToListOfOccurrences(scanner.nextLine())));
+	}
+
 	private static boolean checkIfValid(List<Integer> listOfOccurrences) {
 		int lastOccurrence = 0;
 
@@ -18,11 +23,6 @@ class Solution {
 		}
 
 		return checkIfCanBeModifiedToValid(listOfOccurrences);
-	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		PrintResult(checkIfValid(convertToListOfOccurrences(scanner.nextLine())));
 	}
 
 	private static boolean checkIfCanBeModifiedToValid(List<Integer> listOfOccurrences) {

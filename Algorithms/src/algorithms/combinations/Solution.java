@@ -6,9 +6,9 @@ class Solution {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
-	private static int combinationCount = 0;
-
 	private static final StringBuilder stringBuilder = new StringBuilder();
+
+	private static int combinationCount = 0;
 
 	public static void main(String[] args) {
 		int n = scanner.nextInt();

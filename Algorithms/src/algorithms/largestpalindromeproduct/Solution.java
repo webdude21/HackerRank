@@ -9,6 +9,11 @@ class Solution {
 
 	private static final TreeSet<Integer> calculatedPalindromeProducts = calculatePalindromes();
 
+	public static void main(String[] args) {
+		ArrayList<Integer> input = readInput();
+		input.stream().map(calculatedPalindromeProducts::ceiling).forEach(System.out::println);
+	}
+
 	private static TreeSet<Integer> calculatePalindromes() {
 		int product;
 		TreeSet<Integer> calculatedPalindromeProducts = new TreeSet<>(Comparator.reverseOrder());
@@ -28,11 +33,6 @@ class Solution {
 	private static boolean isPalindrome(int product) {
 		StringBuilder temp = new StringBuilder(Integer.toString(product)).reverse();
 		return temp.toString().equals(Integer.toString(product));
-	}
-
-	public static void main(String[] args) {
-		ArrayList<Integer> input = readInput();
-		input.stream().map(calculatedPalindromeProducts::ceiling).forEach(System.out::println);
 	}
 
 	private static ArrayList<Integer> readInput() {

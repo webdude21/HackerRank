@@ -133,9 +133,9 @@ class Solution {
 
 	static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
-		private T id;
-
 		private final List<Edge<T>> connections;
+
+		private T id;
 
 		Node(T id) {
 			this.connections = new ArrayList<>();

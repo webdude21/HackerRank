@@ -11,6 +11,20 @@ class Solution {
 
 	private static long combinationsFound = 0;
 
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int linesOfInput = scanner.nextInt();
+		ArrayList<Integer> input = new ArrayList<>();
+
+		for (int i = 0; i < linesOfInput; i++) {
+			scanner.nextLine();
+			input.add(scanner.nextInt());
+		}
+
+		input.forEach(Solution::printResult);
+		System.out.print(output.toString());
+	}
+
 	private static ArrayList<Integer> generatePrimes(int max) {
 		ArrayList<Integer> primes = new ArrayList<>();
 
@@ -37,20 +51,6 @@ class Solution {
 			long nextSum = currentSum + primes.get(i);
 			generateSumOfPrimesPermutation(number, nextSum, startIndex++, primeLimit);
 		}
-	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int linesOfInput = scanner.nextInt();
-		ArrayList<Integer> input = new ArrayList<>();
-
-		for (int i = 0; i < linesOfInput; i++) {
-			scanner.nextLine();
-			input.add(scanner.nextInt());
-		}
-
-		input.forEach(Solution::printResult);
-		System.out.print(output.toString());
 	}
 
 	private static long possibleSumOfPrimes(int number) {
