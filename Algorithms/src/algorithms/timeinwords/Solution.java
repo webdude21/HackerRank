@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Solution {
 
 	private static String[] digits = new String[]{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
-			"thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
-			"twenty one", "twenty two", "twenty three", "twenty four", "twenty five", "twenty six", "twenty seven",
-			"twenty eight", "twenty nine"};
+		"thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+		"twenty one", "twenty two", "twenty three", "twenty four", "twenty five", "twenty six", "twenty seven",
+		"twenty eight", "twenty nine"};
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

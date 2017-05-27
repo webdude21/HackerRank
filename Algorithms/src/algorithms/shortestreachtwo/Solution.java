@@ -39,9 +39,9 @@ class Solution {
 		@Override
 		public String toString() {
 			return getEdgeList()
-					.stream()
-					.map(Edge::toString)
-					.collect(Collectors.joining(String.format("%n")));
+				.stream()
+				.map(Edge::toString)
+				.collect(Collectors.joining(String.format("%n")));
 		}
 
 		HashMap<T, Node<T>> getNodeList() {
@@ -94,8 +94,8 @@ class Solution {
 			Edge<?> edge = (Edge<?>) o;
 
 			return getWeight() == edge.getWeight() &&
-					getTarget().equals(edge.getTarget()) &&
-					getSource().equals(edge.getSource());
+				getTarget().equals(edge.getTarget()) &&
+				getSource().equals(edge.getSource());
 		}
 
 		@Override

@@ -19,10 +19,10 @@ class Solution {
 	private static List<Integer> reduceSticks(List<Integer> sticks) {
 		int smallestStick = sticks.stream().min(Integer::compareTo).orElse(0);
 		return sticks
-				.stream()
-				.map(length -> length - smallestStick)
-				.filter(length -> length > 0)
-				.collect(Collectors.toList());
+			.stream()
+			.map(length -> length - smallestStick)
+			.filter(length -> length > 0)
+			.collect(Collectors.toList());
 	}
 
 	private static ArrayList<Integer> readInput() {

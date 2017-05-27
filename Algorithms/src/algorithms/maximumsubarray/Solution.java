@@ -14,8 +14,8 @@ class Solution {
 		scanner = new Scanner(System.in);
 		int testCasesCount = scanner.nextInt();
 		Stream.iterate(1L, n -> n + 1)
-				.limit(testCasesCount)
-				.forEach(x -> printResult(solveTestCase()));
+			.limit(testCasesCount)
+			.forEach(x -> printResult(solveTestCase()));
 	}
 
 	private static void printResult(Pair<Integer, Integer> pair) {
@@ -31,14 +31,14 @@ class Solution {
 		}
 
 		boolean allNegative = Arrays
-				.stream(numbers)
-				.allMatch(x -> x < 0);
+			.stream(numbers)
+			.allMatch(x -> x < 0);
 
 		if (allNegative) {
 			int maxNegative = Arrays
-					.stream(numbers)
-					.max()
-					.orElse(-1);
+				.stream(numbers)
+				.max()
+				.orElse(-1);
 			return new Pair<>(maxNegative, maxNegative);
 		}
 

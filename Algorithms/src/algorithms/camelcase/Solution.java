@@ -11,8 +11,8 @@ class Solution {
 
 	private static long countWords(String input) {
 		return input
-				.chars()
-				.filter(Character::isUpperCase)
-				.count() + 1;
+			.chars()
+			.filter(Character::isUpperCase)
+			.count() + 1;
 	}
 }

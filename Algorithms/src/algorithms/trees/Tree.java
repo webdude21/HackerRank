@@ -22,10 +22,10 @@ public class Tree<T extends Comparable<T>> implements Iterable<Node<T>> {
 
 	public Node<T> findRoot() {
 		Node<T> startNode = nodeMap
-				.values()
-				.stream()
-				.findAny()
-				.orElseThrow(IllegalArgumentException::new);
+			.values()
+			.stream()
+			.findAny()
+			.orElseThrow(IllegalArgumentException::new);
 
 		while (startNode.hasParent()) {
 			startNode = startNode.getParent();
@@ -44,8 +44,8 @@ public class Tree<T extends Comparable<T>> implements Iterable<Node<T>> {
 
 	public String formatOutput(Stream<Node<T>> nodeStream) {
 		return nodeStream
-				.map(Node::toString)
-				.collect(Collectors.joining(", "));
+			.map(Node::toString)
+			.collect(Collectors.joining(", "));
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class Tree<T extends Comparable<T>> implements Iterable<Node<T>> {
 
 	private Stream<Node<T>> filterNodes(Predicate<Node<T>> nodePredicate) {
 		return nodeMap
-				.values()
-				.stream()
-				.filter(nodePredicate);
+			.values()
+			.stream()
+			.filter(nodePredicate);
 	}
 }
