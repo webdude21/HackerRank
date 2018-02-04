@@ -9,6 +9,11 @@ class Solution {
 
 	public static void main(String[] args) {
 		scanner = new Scanner(System.in);
-		System.out.println(LongStream.range(0, scanner.nextInt()).map(x -> scanner.nextLong()).sum());
+
+		long sum = LongStream.range(0, scanner.nextInt())
+			.map(x -> scanner.nextLong())
+			.sum();
+
+		System.out.println(sum);
 	}
 }
