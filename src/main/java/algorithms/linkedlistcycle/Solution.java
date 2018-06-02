@@ -5,24 +5,24 @@ import java.util.Set;
 
 class Solution {
 
-	boolean hasCycle(Node head) {
-		Set<Node> visitedNodes = new HashSet<>();
+  boolean hasCycle(Node head) {
+    Set<Node> visitedNodes = new HashSet<>();
 
-		while (head != null) {
-			if (visitedNodes.contains(head)) {
-				return true;
-			}
+    while (head != null) {
+      if (visitedNodes.contains(head)) {
+        return true;
+      }
 
-			visitedNodes.add(head);
-			head = head.next;
-		}
+      visitedNodes.add(head);
+      head = head.next;
+    }
 
-		return false;
-	}
+    return false;
+  }
 
-	class Node {
-		int data;
+  class Node {
+    int data;
 
-		Node next;
-	}
+    Node next;
+  }
 }

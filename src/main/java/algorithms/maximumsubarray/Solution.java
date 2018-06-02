@@ -8,56 +8,56 @@ import java.util.stream.Stream;
 
 class Solution {
 
-	private static Scanner scanner;
+  private static Scanner scanner;
 
-	public static void main(String[] args) {
-		scanner = new Scanner(System.in);
-		int testCasesCount = scanner.nextInt();
-		Stream.iterate(1L, n -> n + 1)
-			.limit(testCasesCount)
-			.forEach(x -> printResult(solveTestCase()));
-	}
+  public static void main(String[] args) {
+    scanner = new Scanner(System.in);
+    int testCasesCount = scanner.nextInt();
+    Stream.iterate(1L, n -> n + 1)
+      .limit(testCasesCount)
+      .forEach(x -> printResult(solveTestCase()));
+  }
 
-	private static void printResult(Pair<Integer, Integer> pair) {
-		System.out.printf("%d %d%n", pair.getKey(), pair.getValue());
-	}
+  private static void printResult(Pair<Integer, Integer> pair) {
+    System.out.printf("%d %d%n", pair.getKey(), pair.getValue());
+  }
 
-	private static Pair<Integer, Integer> solveTestCase() {
-		int arrayLength = scanner.nextInt();
-		int[] numbers = new int[arrayLength];
+  private static Pair<Integer, Integer> solveTestCase() {
+    int arrayLength = scanner.nextInt();
+    int[] numbers = new int[arrayLength];
 
-		for (int i = 0; i < arrayLength; i++) {
-			numbers[i] = scanner.nextInt();
-		}
+    for (int i = 0; i < arrayLength; i++) {
+      numbers[i] = scanner.nextInt();
+    }
 
-		boolean allNegative = Arrays
-			.stream(numbers)
-			.allMatch(x -> x < 0);
+    boolean allNegative = Arrays
+      .stream(numbers)
+      .allMatch(x -> x < 0);
 
-		if (allNegative) {
-			int maxNegative = Arrays
-				.stream(numbers)
-				.max()
-				.orElse(-1);
-			return new Pair<>(maxNegative, maxNegative);
-		}
+    if (allNegative) {
+      int maxNegative = Arrays
+        .stream(numbers)
+        .max()
+        .orElse(-1);
+      return new Pair<>(maxNegative, maxNegative);
+    }
 
-		return new Pair<>(maxSumForContiguousElements(numbers), maxSumForNonContiguousElements(numbers));
-	}
+    return new Pair<>(maxSumForContiguousElements(numbers), maxSumForNonContiguousElements(numbers));
+  }
 
-	private static int maxSumForContiguousElements(int[] numbers) {
-		int maxSumEndingHere = 0;
-		int maxSumSoFar = 0;
+  private static int maxSumForContiguousElements(int[] numbers) {
+    int maxSumEndingHere = 0;
+    int maxSumSoFar = 0;
 
-		for (int number : numbers) {
-			maxSumEndingHere = Math.max(0, maxSumEndingHere + number);
-			maxSumSoFar = Math.max(maxSumSoFar, maxSumEndingHere);
-		}
+    for (int number : numbers) {
+      maxSumEndingHere = Math.max(0, maxSumEndingHere + number);
+      maxSumSoFar = Math.max(maxSumSoFar, maxSumEndingHere);
+    }
 
-		return maxSumSoFar;
-	}
+    return maxSumSoFar;
+  }
 
-	private static int maxSumForNonContiguousElements(int[] numbers) {
-		return Arrays.stream(numbers).filter(x -> x > 0).sum();
-	}
+  private static int maxSumForNonContiguousElements(int[] numbers) {
+    return Arrays.stream(numbers).filter(x -> x > 0).sum();
+  }
 }

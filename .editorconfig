@@ -15,5 +15,5 @@ charset = utf-8
 
 # 4 space indentation
 [*.java]
-indent_style = tab
-indent_size = 4
+indent_style = space
+indent_size = 2
