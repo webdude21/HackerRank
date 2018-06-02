@@ -1,8 +1,9 @@
 package algorithms.makinganagrams;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 class Solution {
 
@@ -13,43 +14,25 @@ class Solution {
 		System.out.println(numberNeeded(a, b));
 	}
 
-	static int numberNeeded(String first, String second) {
-		Map<Character, Integer> charMap = getCharacterMap(first);
+	static long numberNeeded(String first, String second) {
+		Map<Integer, Long> charMap = getCharacterMap(first);
 
-		int count = 0;
+		long count = 0;
 
-		for (char c : second.toCharArray()) {
+		for (int c : second.toCharArray()) {
 			if (!charMap.containsKey(c) || charMap.containsKey(c) && charMap.get(c) == 0) {
 				count++;
 			} else {
 				if (charMap.containsKey(c) && charMap.get(c) > 0) {
-					Integer current = charMap.get(c);
-					current--;
-					charMap.put(c, current);
+					charMap.put(c, charMap.get(c) - 1);
 				}
 			}
 		}
 
-		for (Integer value : charMap.values()) {
-			count = count + value;
-		}
-
-		return count;
+		return charMap.values().stream().reduce(count, (acc, curr) -> acc + curr);
 	}
 
-	private static Map<Character, Integer> getCharacterMap(String value) {
-		Map<Character, Integer> charMap = new HashMap<>();
-
-		for (char c : value.toCharArray()) {
-			if (!charMap.containsKey(c)) {
-				charMap.put(c, 1);
-			} else {
-				Integer current = charMap.get(c);
-				current++;
-				charMap.put(c, current);
-			}
-		}
-
-		return charMap;
+	private static Map<Integer, Long> getCharacterMap(String value) {
+		return value.chars().boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 	}
 }
