@@ -13,7 +13,7 @@ class Solution {
 		System.out.println(numberNeeded(a, b));
 	}
 
-	private static int numberNeeded(String first, String second) {
+	static int numberNeeded(String first, String second) {
 		Map<Character, Integer> charMap = getCharacterMap(first);
 
 		int count = 0;

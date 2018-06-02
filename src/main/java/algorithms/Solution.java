@@ -1,4 +1,4 @@
-package algorithms.averybigsum;
+package algorithms;
 
 import java.util.Scanner;
 import java.util.stream.LongStream;
