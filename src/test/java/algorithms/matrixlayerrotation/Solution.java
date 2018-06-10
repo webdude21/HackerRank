@@ -25,7 +25,7 @@ public class Solution {
       }
     }
 
-    int[][] resultMatrix = rotateMatrix(matrix, r);
+    int[][] resultMatrix = rotateMatrix(matrix, r, 0);
     printMatrix(resultMatrix);
 
     scanner.close();
@@ -44,7 +44,7 @@ public class Solution {
     System.out.println(sb.toString());
   }
 
-  static int[][] rotateMatrix(int[][] matrix, int rotations) {
+  static int[][] rotateMatrix(int[][] matrix, int rotations, int startRow) {
     return matrix;
   }
 }
