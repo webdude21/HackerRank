@@ -23,7 +23,7 @@ class SolutionTest implements ArgumentsProvider {
       new int[]{2, 11, 10, 16},
       new int[]{1, 7, 6, 15},
       new int[]{5, 9, 13, 14},
-    });
+    }, 2);
 
   private final Arguments testCase02 = Arguments.of(
     new int[][]{
@@ -39,7 +39,7 @@ class SolutionTest implements ArgumentsProvider {
       new int[]{16, 8, 21, 13},
       new int[]{10, 14, 20, 7},
       new int[]{4, 3, 2, 1},
-    });
+    }, 7);
 
   private final Arguments testCase03 = Arguments.of(
     new int[][]{
@@ -49,7 +49,7 @@ class SolutionTest implements ArgumentsProvider {
     new int[][]{
       new int[]{1, 1},
       new int[]{1, 1},
-    });
+    }, 3);
 
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
@@ -58,7 +58,7 @@ class SolutionTest implements ArgumentsProvider {
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void matrixRotation(int[][] input, int[][] expected) {
-    Assertions.assertArrayEquals(expected, Solution.rotateMatrix(input));
+  void matrixRotation(int[][] input, int[][] expected, int rotations) {
+    Assertions.assertArrayEquals(expected, Solution.rotateMatrix(input, rotations));
   }
 }
