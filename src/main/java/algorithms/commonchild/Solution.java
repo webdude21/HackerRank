@@ -15,12 +15,12 @@ public class Solution {
   static int solve(String a, String b) {
     int[][] table = new int[a.length() + 1][b.length() + 1];
 
-    for (int i = 0; i < a.length(); i++) {
-      for (int j = 0; j < b.length(); j++) {
-        if (a.charAt(i) == b.charAt(j)) {
-          table[i + 1][j + 1] = table[i][j] + 1;
+    for (int indexA = 0; indexA < a.length(); indexA++) {
+      for (int indexB = 0; indexB < b.length(); indexB++) {
+        if (a.charAt(indexA) == b.charAt(indexB)) {
+          table[indexA + 1][indexB + 1] = table[indexA][indexB] + 1;
         } else {
-          table[i + 1][j + 1] = Math.max(table[i + 1][j], table[i][j + 1]);
+          table[indexA + 1][indexB + 1] = Math.max(table[indexA + 1][indexB], table[indexA][indexB + 1]);
         }
       }
     }
