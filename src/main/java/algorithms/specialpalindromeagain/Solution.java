@@ -17,7 +17,7 @@ public class Solution {
     int palindromeSubstringCount = input.length();
 
     for (int i = 0; i < input.length(); i++) {
-      for (int j = i + 2; j < input.length(); j++) {
+      for (int j = i + 1; j < input.length(); j++) {
         if (isSpecialPalindrome(input, i, j)) {
           palindromeSubstringCount++;
         }

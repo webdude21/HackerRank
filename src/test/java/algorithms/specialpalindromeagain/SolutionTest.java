@@ -16,7 +16,8 @@ public class SolutionTest implements ArgumentsProvider {
     return Stream.of(
       Arguments.of(7, "asasd"),
       Arguments.of(10, "abcbaba"),
-      Arguments.of(11, "mnonopoo")
+      Arguments.of(12, "mnonopoo"),
+      Arguments.of(10, "aaaa")
     );
   }
 
