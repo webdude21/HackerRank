@@ -1,11 +1,8 @@
 package algorithms.dayoftheprogrammer;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Scanner;
 
 public class Solution {
 
@@ -17,15 +14,19 @@ public class Solution {
   }
 
   static String solve(int year) {
-    GregorianCalendar calendar = new GregorianCalendar();
-    LocalDate localDate = LocalDate.ofYearDay(1918, 1);
-    Date switchDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    calendar.setGregorianChange(switchDate);
-    calendar.set(year, GregorianCalendar.JANUARY, 0);
-    calendar.add(Calendar.DAY_OF_YEAR, 256);
-    Instant instant = calendar.toInstant();
-    LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.of("Europe/Kaliningrad"));
-    java.util.Date from = Date.from(instant);
-    return localDateTime.format(DateTimeFormatter.ofPattern("d.MM.uuuu"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    int daysToAdjust = 255;
+
+    if (year == 1918) {
+      daysToAdjust = daysToAdjust + 13;
+    } else if (year < 1918) {
+      if (year % 4 == 0 && year % 100 == 0) {
+        daysToAdjust = daysToAdjust - 1;
+      }
+    }
+
+    LocalDate date = LocalDate.of(year, 1, 1);
+    LocalDate dayOfProgrammer = date.plusDays(daysToAdjust);
+    return dayOfProgrammer.format(formatter);
   }
 }
