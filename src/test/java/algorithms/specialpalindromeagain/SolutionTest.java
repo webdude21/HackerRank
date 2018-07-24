@@ -74,12 +74,6 @@ public class SolutionTest implements ArgumentsProvider {
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void solve(int expected, String input) {
-    Assertions.assertEquals(expected, Solution.solve(input));
-  }
-
-  @ParameterizedTest
-  @ArgumentsSource(SolutionTest.class)
   void solveAlternative(int expected, String input) {
     Assertions.assertEquals(expected, Solution.solveAlternative(input));
   }
