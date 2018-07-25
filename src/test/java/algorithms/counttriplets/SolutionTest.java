@@ -117,12 +117,12 @@ public class SolutionTest implements ArgumentsProvider {
     22274800, 33911900, 718782700, 70593400, 530034600, 781036700, 276288500, 21065700, 1687200, 183630100, 292712900,
     90706100, 635340500, 538370700, 849214000, 61193700, 342854600, 748053700, 414091500, 110268600, 780371200}, 100L);
   private static final Arguments testCase06 = Arguments.of(161700L, smallerArray, 1L);
-  private static final Arguments testcase07 = Arguments.of(3L, new long[]{1, 2, 1, 2, 4}, 2L);
+  private static final Arguments testCase07 = Arguments.of(3L, new long[]{1, 2, 1, 2, 4}, 2L);
 
 
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
-    return Stream.of(testCase01, testCase02, testCase03, testCase04, testCase05, testCase06, testcase07);
+    return Stream.of(testCase01, testCase02, testCase03, testCase04, testCase05, testCase06, testCase07);
   }
 
   @ParameterizedTest
