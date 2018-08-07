@@ -21,6 +21,6 @@ public class SolutionTest implements ArgumentsProvider {
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
   void testInversionCount(int expected, int[] input) {
-    Assertions.assertEquals(expected, Solution.countInversion(input));
+    Assertions.assertEquals(expected, Solution.countInversions(input));
   }
 }
