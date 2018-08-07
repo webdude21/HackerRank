@@ -26,7 +26,7 @@ public class Solution {
         arr[i] = arrItem;
       }
 
-      long result = countInversions(arr);
+      long result = countInversionAlternative(arr);
 
       System.out.println(String.valueOf(result));
     }
@@ -37,6 +37,20 @@ public class Solution {
   static int countInversions(int[] input) {
     inversionCount = 0;
     mergeSort(input);
+    return inversionCount;
+  }
+
+  static int countInversionAlternative(int[] input) {
+    int inversionCount = 0;
+
+    for (int i = 0; i < input.length - 1; i++) {
+      for (int j = i + 1; j < input.length; j++) {
+        if (input[i] > input[j]) {
+          inversionCount++;
+        }
+      }
+    }
+
     return inversionCount;
   }
 
