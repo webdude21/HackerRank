@@ -13,14 +13,14 @@ public class SolutionTest implements ArgumentsProvider {
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
     return Stream.of(
-      Arguments.of(0, new int[]{1, 1, 1, 2, 2}),
-      Arguments.of(4, new int[]{2, 1, 3, 1, 2})
+      Arguments.of(0L, new int[]{1, 1, 1, 2, 2}),
+      Arguments.of(4L, new int[]{2, 1, 3, 1, 2})
     );
   }
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void testInversionCount(int expected, int[] input) {
+  void testInversionCount(long expected, int[] input) {
     Assertions.assertEquals(expected, Solution.countInversions(input));
   }
 

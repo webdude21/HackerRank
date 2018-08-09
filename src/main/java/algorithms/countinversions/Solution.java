@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
-  private static int inversionCount = 0;
+  private static long inversionCount = 0L;
 
   private static final Scanner scanner = new Scanner(System.in);
 
@@ -26,7 +26,7 @@ public class Solution {
         arr[i] = arrItem;
       }
 
-      long result = countInversionAlternative(arr);
+      long result = countInversions(arr);
 
       System.out.println(String.valueOf(result));
     }
@@ -34,14 +34,14 @@ public class Solution {
     scanner.close();
   }
 
-  static int countInversions(int[] input) {
-    inversionCount = 0;
+  static long countInversions(int[] input) {
+    inversionCount = 0L;
     mergeSort(input);
     return inversionCount;
   }
 
-  static int countInversionAlternative(int[] input) {
-    int inversionCount = 0;
+  static long countInversionAlternative(int[] input) {
+    long inversionCount = 0;
 
     for (int i = 0; i < input.length - 1; i++) {
       for (int j = i + 1; j < input.length; j++) {
