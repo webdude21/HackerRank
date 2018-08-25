@@ -78,19 +78,15 @@ public class Solution {
 
       if (bothAreInRange) {
         if (left[leftIndex] <= right[rightIndex]) {
-          merged[i] = left[leftIndex];
-          leftIndex++;
+          merged[i] = left[leftIndex++];
         } else {
-          merged[i] = right[rightIndex];
-          rightIndex++;
+          merged[i] = right[rightIndex++];
           inversionCount += (midPoint - leftIndex);
         }
       } else if (leftIndex < left.length) {
-        merged[i] = left[leftIndex];
-        leftIndex++;
+        merged[i] = left[leftIndex++];
       } else {
-        merged[i] = right[rightIndex];
-        rightIndex++;
+        merged[i] = right[rightIndex++];
       }
     }
 
