@@ -1,6 +1,7 @@
 package algorithms.greedyflorist;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Solution {
@@ -30,13 +31,18 @@ public class Solution {
   }
 
   static int getMinimumCost(int friendsCount, int[] flowersPrice) {
-    Arrays.sort(flowersPrice);
+    flowersPrice = Arrays.stream(flowersPrice)
+      .boxed()
+      .sorted(Comparator.reverseOrder())
+      .mapToInt(Integer::valueOf)
+      .toArray();
 
-    final int flowersCount = flowersPrice.length;
-    final int flowerPrices = Arrays.stream(flowersPrice).sum();
-    final int flowersExtra = flowersCount % friendsCount;
-    final int extraPrice = Arrays.stream(flowersPrice).limit(flowersExtra).sum();
+    int sum = 0;
 
-    return flowerPrices + extraPrice;
+    for (int i = 0; i < flowersPrice.length; i++) {
+      sum += flowersPrice[i] * ((i / friendsCount) + 1);
+    }
+
+    return sum;
   }
 }
