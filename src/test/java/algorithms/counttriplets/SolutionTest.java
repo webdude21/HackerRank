@@ -17,12 +17,6 @@ public class SolutionTest implements ArgumentsProvider {
   private static final Arguments testCase03 = Arguments.of(4L, new long[]{1, 5, 5, 25, 125}, 5L);
   private static final long[] largeArray = new long[100000];
   private static final long[] smallerArray = new long[100];
-
-  static {
-    Arrays.fill(largeArray, 1237L);
-    Arrays.fill(smallerArray, 1L);
-  }
-
   private static final Arguments testCase04 = Arguments.of(166661666700000L, largeArray, 1L);
   private static final Arguments testCase05 = Arguments.of(0L, new long[]{
     1, 883159100, 531288700, 190057300, 151290300, 718720100, 402786700, 289690000, 492421700, 191768600, 973598000,
@@ -119,6 +113,10 @@ public class SolutionTest implements ArgumentsProvider {
   private static final Arguments testCase06 = Arguments.of(161700L, smallerArray, 1L);
   private static final Arguments testCase07 = Arguments.of(3L, new long[]{1, 2, 1, 2, 4}, 2L);
 
+  static {
+    Arrays.fill(largeArray, 1237L);
+    Arrays.fill(smallerArray, 1L);
+  }
 
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Solution {
 
+  private static final Scanner scanner = new Scanner(System.in);
+
   static long arrayManipulation(int n, int[][] queries) {
     long[] stateArray = new long[n];
 
@@ -29,8 +31,6 @@ public class Solution {
 
     return max;
   }
-
-  private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
     String[] nm = scanner.nextLine().split(" ");

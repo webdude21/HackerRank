@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
-  private static long inversionCount = 0L;
-
   private static final Scanner scanner = new Scanner(System.in);
+  private static long inversionCount = 0L;
 
   public static void main(String[] args) {
     int t = scanner.nextInt();
