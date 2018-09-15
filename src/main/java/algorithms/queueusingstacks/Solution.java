@@ -62,23 +62,29 @@ public class Solution {
   }
 
   private static int peek() {
-    return head.peek();
+    if (tail.isEmpty()) {
+      shift();
+    }
+
+    return tail.peek();
   }
 
   private static void dequeue() {
-    head.pop();
+    if (tail.isEmpty()) {
+      shift();
+    }
+
+    tail.pop();
+  }
+
+  private static void shift() {
+    while (!head.isEmpty()) {
+      tail.push(head.pop());
+    }
   }
 
   private static void enqueue(int argument) {
-    while (!head.empty()) {
-      tail.push(head.pop());
-    }
-
     head.push(argument);
-
-    while (!tail.empty()) {
-      head.push(tail.pop());
-    }
   }
 }
 
