@@ -29,10 +29,21 @@ public class Solution {
       this.commandAsInt = commandAsInt;
     }
 
-    static public Optional<CommandType> valueOf(int commandAsInt) {
-      return Arrays.stream(CommandType.values())
-        .filter(commandType -> commandType.commandAsInt == commandAsInt)
-        .findAny();
+    static public CommandType valueOf(int commandAsInt) {
+      switch (commandAsInt) {
+        case 1:
+          return INSERT;
+        case 2:
+          return DELETE;
+        case 3:
+          return QUERY;
+        default:
+          throw new IllegalArgumentException(commandAsInt + " is not a valid command type!");
+      }
+    }
+
+    public int getCommandAsInt() {
+      return commandAsInt;
     }
   }
 
@@ -134,9 +145,7 @@ public class Solution {
     }
 
     public static Command of(int commandAsInt, int argument) {
-      final CommandType commandType = CommandType.valueOf(commandAsInt)
-        .orElseThrow(() -> new IllegalArgumentException(commandAsInt + " is not a valid command type!"));
-      return new Command(commandType, argument);
+      return new Command(CommandType.valueOf(commandAsInt), argument);
     }
   }
 }
