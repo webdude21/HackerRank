@@ -1,6 +1,13 @@
 package algorithms.frequencyqueries;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Solution {
 
@@ -29,13 +36,38 @@ public class Solution {
     }
   }
 
+  private static List<Integer> freqQuery(List<List<Integer>> queries) {
+    final Command[] commands = queries.stream().map(query -> Command.of(query.get(0), query.get(1))).toArray(Command[]::new);
+    return frequencyQuery(commands);
+  }
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+    int q = Integer.parseInt(bufferedReader.readLine().trim());
+
+    List<List<Integer>> queries = new ArrayList<>();
+
+    IntStream.range(0, q).forEach(i -> {
+      try {
+        queries.add(
+          Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(toList())
+        );
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    List<Integer> ans = freqQuery(queries);
+
+    ans.forEach(System.out::println);
+  }
+
   static List<Integer> frequencyQuery(Command[] input) {
     Solution solution = new Solution(new ArrayList<>());
-
-    for (Command command : input) {
-      solution.interpretCommand(command, command.argument);
-    }
-
+    Arrays.stream(input).forEach(command -> solution.interpretCommand(command, command.argument));
     return solution.resultStore;
   }
 
