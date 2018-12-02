@@ -11,47 +11,47 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static algorithms.frequencyqueries.Solution.Tuple;
+import static algorithms.frequencyqueries.Solution.Command;
 
 public class SolutionTest implements ArgumentsProvider {
 
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
     return Stream.of(
-      Arguments.of(Arrays.asList(0, 1), new Tuple[]{
-        Tuple.of(3, 4),
-        Tuple.of(2, 1003),
-        Tuple.of(1, 16),
-        Tuple.of(3, 1)
+      Arguments.of(Arrays.asList(0, 1), new Command[]{
+        Command.of(3, 4),
+        Command.of(2, 1003),
+        Command.of(1, 16),
+        Command.of(3, 1)
       }),
-      Arguments.of(Arrays.asList(0, 1), new Tuple[]{
-        Tuple.of(1, 5),
-        Tuple.of(1, 6),
-        Tuple.of(3, 2),
-        Tuple.of(1, 10),
-        Tuple.of(1, 10),
-        Tuple.of(1, 6),
-        Tuple.of(2, 5),
-        Tuple.of(3, 2)
+      Arguments.of(Arrays.asList(0, 1), new Command[]{
+        Command.of(1, 5),
+        Command.of(1, 6),
+        Command.of(3, 2),
+        Command.of(1, 10),
+        Command.of(1, 10),
+        Command.of(1, 6),
+        Command.of(2, 5),
+        Command.of(3, 2)
       }),
-      Arguments.of(Arrays.asList(0, 1, 1), new Tuple[]{
-        Tuple.of(1, 3),
-        Tuple.of(2, 3),
-        Tuple.of(3, 2),
-        Tuple.of(1, 4),
-        Tuple.of(1, 5),
-        Tuple.of(1, 5),
-        Tuple.of(1, 4),
-        Tuple.of(3, 2),
-        Tuple.of(2, 4),
-        Tuple.of(3, 2)
+      Arguments.of(Arrays.asList(0, 1, 1), new Command[]{
+        Command.of(1, 3),
+        Command.of(2, 3),
+        Command.of(3, 2),
+        Command.of(1, 4),
+        Command.of(1, 5),
+        Command.of(1, 5),
+        Command.of(1, 4),
+        Command.of(3, 2),
+        Command.of(2, 4),
+        Command.of(3, 2)
       })
     );
   }
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void test(List<Integer> expected, Tuple[] input) {
+  void test(List<Integer> expected, Command[] input) {
     Assertions.assertEquals(expected, Solution.frequencyQuery(input));
   }
 }
