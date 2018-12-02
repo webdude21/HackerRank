@@ -11,20 +11,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static algorithms.frequencyqueries.Solution.Command;
+import static algorithms.frequencyqueries.Solution.*;
 
 public class SolutionTest implements ArgumentsProvider {
 
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
     return Stream.of(
-      Arguments.of(Arrays.asList(0, 1), new Command[]{
+      Arguments.of(Arrays.asList(NOT_FOUND, FOUND), new Command[]{
         Command.of(3, 4),
         Command.of(2, 1003),
         Command.of(1, 16),
         Command.of(3, 1)
       }),
-      Arguments.of(Arrays.asList(0, 1), new Command[]{
+      Arguments.of(Arrays.asList(NOT_FOUND, FOUND), new Command[]{
         Command.of(1, 5),
         Command.of(1, 6),
         Command.of(3, 2),
@@ -34,7 +34,7 @@ public class SolutionTest implements ArgumentsProvider {
         Command.of(2, 5),
         Command.of(3, 2)
       }),
-      Arguments.of(Arrays.asList(0, 1, 1), new Command[]{
+      Arguments.of(Arrays.asList(NOT_FOUND, FOUND, FOUND), new Command[]{
         Command.of(1, 3),
         Command.of(2, 3),
         Command.of(3, 2),
@@ -51,7 +51,7 @@ public class SolutionTest implements ArgumentsProvider {
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void test(List<Integer> expected, Command[] input) {
+  void test(List<String> expected, Command[] input) {
     Assertions.assertEquals(expected, Solution.frequencyQuery(input));
   }
 }

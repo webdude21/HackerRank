@@ -4,17 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public class Solution {
 
-  private final ArrayList<Integer> resultStore;
+  static final String FOUND = "1";
+  static final String NOT_FOUND = "0";
+  private final ArrayList<String> resultStore;
   private final Map<Integer, Integer> occurrenceMap = new HashMap<>();
 
-  public Solution(ArrayList<Integer> resultStore) {
+  public Solution(ArrayList<String> resultStore) {
     this.resultStore = resultStore;
   }
 
@@ -29,7 +27,7 @@ public class Solution {
       this.commandAsInt = commandAsInt;
     }
 
-    static public CommandType valueOf(int commandAsInt) {
+    static CommandType valueOf(int commandAsInt) {
       switch (commandAsInt) {
         case 1:
           return INSERT;
@@ -47,36 +45,23 @@ public class Solution {
     }
   }
 
-  private static List<Integer> freqQuery(List<List<Integer>> queries) {
-    final Command[] commands = queries.stream().map(query -> Command.of(query.get(0), query.get(1))).toArray(Command[]::new);
-    return frequencyQuery(commands);
-  }
-
   public static void main(String[] args) throws IOException {
-    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    try (BufferedReader bufferedReader = new BufferedReader(
+      new InputStreamReader(System.in))) {
 
-    int q = Integer.parseInt(bufferedReader.readLine().trim());
+      int q = Integer.parseInt(bufferedReader.readLine().trim());
+      Command[] commands = new Command[q];
 
-    List<List<Integer>> queries = new ArrayList<>();
-
-    IntStream.range(0, q).forEach(i -> {
-      try {
-        queries.add(
-          Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-            .map(Integer::parseInt)
-            .collect(toList())
-        );
-      } catch (IOException ex) {
-        throw new RuntimeException(ex);
+      for (int i = 0; i < q; i++) {
+        String[] query = bufferedReader.readLine().split(" ");
+        commands[i] = Command.of(Integer.parseInt(query[0]), Integer.parseInt(query[1]));
       }
-    });
 
-    List<Integer> ans = freqQuery(queries);
-
-    ans.forEach(System.out::println);
+      System.out.println(String.join(System.lineSeparator(), frequencyQuery(commands)));
+    }
   }
 
-  static List<Integer> frequencyQuery(Command[] input) {
+  static List<String> frequencyQuery(Command[] input) {
     Solution solution = new Solution(new ArrayList<>());
     Arrays.stream(input).forEach(command -> solution.interpretCommand(command, command.argument));
     return solution.resultStore;
@@ -99,10 +84,9 @@ public class Solution {
   }
 
   private void query(int argument) {
-    boolean exists = occurrenceMap.entrySet().stream()
+    boolean found = occurrenceMap.entrySet().stream()
       .anyMatch(keyValuePair -> keyValuePair.getValue().equals(argument));
-
-    resultStore.add(exists ? 1 : 0);
+    resultStore.add(found ? FOUND : NOT_FOUND);
   }
 
   private void delete(int argument) {
