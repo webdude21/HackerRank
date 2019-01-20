@@ -27,7 +27,7 @@ public class Solution {
 
     int result = minimumAbsoluteDifference(arr);
 
-    System.out.println(String.valueOf(result));
+    System.out.println(result);
 
     scanner.close();
   }

@@ -8,7 +8,7 @@ class Solution {
     Scanner scanner = new Scanner(System.in);
     int n = scanner.nextInt();
 
-    int numberCount[] = new int[100];
+    int[] numberCount = new int[100];
 
     for (int i = 0; i <= n; i++) {
       String[] words = scanner.nextLine().split(" ");

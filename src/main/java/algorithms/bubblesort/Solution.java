@@ -7,7 +7,7 @@ class Solution {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     int n = in.nextInt();
-    int arrayToSort[] = new int[n];
+    int[] arrayToSort = new int[n];
 
     for (int i = 0; i < n; i++) {
       arrayToSort[i] = in.nextInt();
