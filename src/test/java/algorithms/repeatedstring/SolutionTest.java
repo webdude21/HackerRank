@@ -1,6 +1,5 @@
 package algorithms.repeatedstring;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -8,6 +7,8 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SolutionTest implements ArgumentsProvider {
 
@@ -29,6 +30,6 @@ class SolutionTest implements ArgumentsProvider {
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
   void repeatedString(long expected, long resultStringLength, String input) {
-    Assertions.assertEquals(expected, Solution.repeatedString(input, resultStringLength));
+    assertEquals(expected, Solution.repeatedString(input, resultStringLength));
   }
 }
