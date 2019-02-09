@@ -1,9 +1,9 @@
 package algorithms.sockmerchant;
 
 import java.util.Scanner;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -17,7 +17,7 @@ public class Solution {
 
   static long countSockPairs(String socks) {
     return Stream.of(socks.split("\\s+"))
-      .collect(groupingBy(Function.identity(), counting()))
+      .collect(groupingBy(identity(), counting()))
       .values()
       .stream()
       .mapToLong(Long::longValue)
