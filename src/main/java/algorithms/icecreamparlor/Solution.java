@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class Solution {
 
-  private static final Scanner scanner = new Scanner(System.in);
-
   public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
     int t = scanner.nextInt();
     scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
@@ -39,18 +39,51 @@ public class Solution {
   }
 
   static int[] whatFlavors(int[] cost, int money) {
+    CostPosition[] costPositionArray = new CostPosition[cost.length];
+
     for (int i = 0; i < cost.length; i++) {
-      if (cost[i] >= money) {
+      costPositionArray[i] = new CostPosition(cost[i], i);
+    }
+
+    Arrays.sort(costPositionArray);
+
+    for (int i = 0; i < costPositionArray.length; i++) {
+      CostPosition a = costPositionArray[i];
+      if (a.cost >= money) {
         continue;
       }
 
-      for (int j = i + 1; j < cost.length; j++) {
-        if (cost[i] + cost[j] == money) {
-          return new int[]{i + 1, j + 1};
+      CostPosition b = new CostPosition(money - a.cost, -1);
+      int bPosition = Arrays.binarySearch(costPositionArray, i, costPositionArray.length, b);
+
+      if (bPosition <= 0) {
+        continue;
+      } else {
+        if (costPositionArray[bPosition].position == a.position) {
+          bPosition = Arrays.binarySearch(costPositionArray, bPosition + 1, costPositionArray.length, b);
         }
       }
+
+      int[] result = {a.position + 1, costPositionArray[bPosition].position + 1};
+      Arrays.sort(result);
+      return result;
     }
 
-    return new int[]{0, 0};
+    throw new IllegalArgumentException("Shouldn't really get here.");
+  }
+
+  static class CostPosition implements Comparable<CostPosition> {
+    int cost;
+    int position;
+
+    CostPosition(int cost, int position) {
+      this.cost = cost;
+      this.position = position;
+    }
+
+    @Override
+    public int compareTo(CostPosition o) {
+      return Integer.compare(this.cost, o.cost);
+    }
   }
 }
