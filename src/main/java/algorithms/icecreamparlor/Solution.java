@@ -1,6 +1,8 @@
 package algorithms.icecreamparlor;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -29,13 +31,30 @@ public class Solution {
         cost[i] = costItem;
       }
 
-      String output = Arrays.stream(whatFlavors(cost, money))
+      String output = Arrays.stream(whatFlavorsAlternative(cost, money))
         .mapToObj(String::valueOf)
         .collect(Collectors.joining(" "));
       System.out.println(output);
     }
 
     scanner.close();
+  }
+
+  static int[] whatFlavorsAlternative(int[] cost, int money) {
+    Map<Integer, Integer> costToIndex = new HashMap<>();
+
+    for (int index = 0; index < cost.length; index++) {
+      int currentCost = cost[index];
+      int moneyLeft = money - currentCost;
+
+      if (!costToIndex.containsKey(moneyLeft)) {
+        costToIndex.put(currentCost, index);
+      } else {
+        return new int[]{costToIndex.get(moneyLeft) + 1, index + 1};
+      }
+    }
+
+    throw new IllegalArgumentException("Shouldn't really get here.");
   }
 
   static int[] whatFlavors(int[] cost, int money) {

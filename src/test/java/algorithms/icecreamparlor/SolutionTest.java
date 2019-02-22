@@ -26,4 +26,10 @@ class SolutionTest implements ArgumentsProvider {
   void whatFlavors(int[] expected, int[] cost, int money) {
     Assertions.assertArrayEquals(expected, Solution.whatFlavors(cost, money));
   }
+
+  @ParameterizedTest
+  @ArgumentsSource(SolutionTest.class)
+  void whatFlavorsAlternative(int[] expected, int[] cost, int money) {
+    Assertions.assertArrayEquals(expected, Solution.whatFlavorsAlternative(cost, money));
+  }
 }
