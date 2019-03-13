@@ -1,66 +1,31 @@
 package algorithms.triplesum;
 
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Solution {
 
   private static final Scanner scanner = new Scanner(System.in);
 
   static long triplets(int[] a, int[] b, int[] c) {
-    Set<Triplet> triplets = new HashSet<>();
+    a = Arrays.stream(a).sorted().distinct().toArray();
+    b = Arrays.stream(b).sorted().distinct().toArray();
+    c = Arrays.stream(c).sorted().distinct().toArray();
 
-    for (int aElement : a) {
-      for (int bElement : b) {
-        for (int cElement : c) {
-          if (aElement <= bElement && bElement >= cElement) {
-            triplets.add(Triplet.of(aElement, bElement, cElement));
-          }
-        }
+    int j = 0, k = 0;
+    long solutions = 0;
+
+    for (int i : b) {
+      while (j < a.length && a[j] <= i) {
+        j++;
       }
+      while (k < c.length && c[k] <= i) {
+        k++;
+      }
+      solutions += (long) j * k;
     }
 
-    return triplets.size();
-  }
-
-  static class Triplet {
-    private final int a;
-    private final int b;
-    private final int c;
-
-    Triplet(int a, int b, int c) {
-      this.a = a;
-      this.b = b;
-      this.c = c;
-    }
-
-    static Triplet of(int a, int b, int c) {
-      return new Triplet(a, b, c);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (!(o instanceof Triplet)) return false;
-      Triplet triplet = (Triplet) o;
-      return a == triplet.a && b == triplet.b && c == triplet.c;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(a, b, c);
-    }
-
-    @Override
-    public String toString() {
-      return "Triplet{" +
-        "a=" + a +
-        ", b=" + b +
-        ", c=" + c +
-        '}';
-    }
+    return solutions;
   }
 
   public static void main(String[] args) {
