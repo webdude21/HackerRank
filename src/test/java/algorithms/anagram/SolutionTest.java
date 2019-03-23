@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SolutionTest implements ArgumentsProvider {
 
   @Override
-  public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+  public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
     return Stream.of(
       Arguments.of(3, "aaabbb"),
       Arguments.of(1, "ab"),
