@@ -46,9 +46,9 @@ class SolutionTest implements ArgumentsProvider {
 
     Solution.Point expected = Solution.Point.of(2, 1);
 
-    final Optional<Solution.Point> actulPortkeyPosition = Solution.getPortkeyPoint(testMatrix);
-    Assertions.assertTrue(actulPortkeyPosition.isPresent());
-    Assertions.assertEquals(expected, actulPortkeyPosition.get());
+    final Optional<Solution.Point> actualPorkerPosition = Solution.getPortkeyPoint(testMatrix);
+    Assertions.assertTrue(actualPorkerPosition.isPresent());
+    Assertions.assertEquals(expected, actualPorkerPosition.get());
   }
 
   @Override
