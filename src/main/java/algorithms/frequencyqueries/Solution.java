@@ -111,7 +111,7 @@ public class Solution {
       if (this == o) return true;
       if (!(o instanceof Command)) return false;
       Command command = (Command) o;
-      return this.type == command.type &&
+      return type == command.type &&
         argument == command.argument;
     }
 
@@ -124,7 +124,7 @@ public class Solution {
     private final int argument;
 
     Command(CommandType commandType, int argument) {
-      this.type = commandType;
+      type = commandType;
       this.argument = argument;
     }
 

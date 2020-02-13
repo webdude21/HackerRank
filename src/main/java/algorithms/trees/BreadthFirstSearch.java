@@ -9,7 +9,7 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements Iterator<Nod
   private final Queue<Node<T>> nodeQueue;
 
   BreadthFirstSearch(Node<T> rootNode) {
-    this.nodeQueue = new LinkedList<>();
+    nodeQueue = new LinkedList<>();
     nodeQueue.add(rootNode);
   }
 
@@ -20,8 +20,8 @@ public class BreadthFirstSearch<T extends Comparable<T>> implements Iterator<Nod
 
   @Override
   public Node<T> next() {
-    Node<T> resultNode = this.nodeQueue.poll();
-    this.nodeQueue.addAll(resultNode.getDescendats());
+    Node<T> resultNode = nodeQueue.poll();
+    nodeQueue.addAll(resultNode.getDescendats());
     return resultNode;
   }
 }

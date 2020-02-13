@@ -17,6 +17,6 @@ public class Node {
 
   @Override
   public String toString() {
-    return "[" + this.data + "]";
+    return "[" + data + "]";
   }
 }

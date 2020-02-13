@@ -102,7 +102,7 @@ public class Solution {
 
     @Override
     public int compareTo(CostPosition o) {
-      return Integer.compare(this.cost, o.cost);
+      return Integer.compare(cost, o.cost);
     }
   }
 }

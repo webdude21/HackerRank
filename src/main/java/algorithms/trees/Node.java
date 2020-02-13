@@ -37,7 +37,7 @@ public class Node<T extends Comparable<T>> implements Comparable<T> {
   }
 
   public boolean hasParent() {
-    return this.parent != null;
+    return parent != null;
   }
 
   @Override
@@ -47,11 +47,11 @@ public class Node<T extends Comparable<T>> implements Comparable<T> {
 
   @Override
   public String toString() {
-    return String.format("{Node: %s}", this.getValue().toString());
+    return String.format("{Node: %s}", getValue().toString());
   }
 
   public void addDescendant(Node<T> node) {
-    this.descendants.add(node);
+    descendants.add(node);
   }
 
   public Collection<Node<T>> getDescendats() {

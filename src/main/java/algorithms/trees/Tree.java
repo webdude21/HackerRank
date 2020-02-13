@@ -50,7 +50,7 @@ public class Tree<T extends Comparable<T>> implements Iterable<Node<T>> {
 
   @Override
   public Iterator<Node<T>> iterator() {
-    return new BreadthFirstSearch<>(this.findRoot());
+    return new BreadthFirstSearch<>(findRoot());
   }
 
   @Override

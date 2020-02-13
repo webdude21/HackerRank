@@ -80,7 +80,7 @@ class Solution {
     @Override
     public int compareTo(Edge<T> o) {
       if (o != null) {
-        return this.getWeight() - o.getWeight();
+        return getWeight() - o.getWeight();
       }
 
       return 0;
@@ -138,7 +138,7 @@ class Solution {
     private T id;
 
     Node(T id) {
-      this.connections = new ArrayList<>();
+      connections = new ArrayList<>();
       setId(id);
     }
 
@@ -155,7 +155,7 @@ class Solution {
 
     @Override
     public String toString() {
-      return this.getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
+      return getConnections().stream().map(Edge::toString).collect(Collectors.joining(String.format("%n")));
     }
 
     @Override
@@ -166,7 +166,7 @@ class Solution {
     @Override
     public int compareTo(Node<T> o) {
       if (o != null) {
-        o.getId().compareTo(this.getId());
+        o.getId().compareTo(getId());
       }
 
       return 0;
@@ -197,7 +197,7 @@ class Solution {
     }
 
     void addConnection(Node<T> targetNode, int weight) {
-      this.addConnection(targetNode, weight, false);
+      addConnection(targetNode, weight, false);
     }
 
     T getId() {
