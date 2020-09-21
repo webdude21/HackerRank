@@ -1,6 +1,7 @@
 package algorithms.larrysarray;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,6 +26,7 @@ class SolutionTest implements ArgumentsProvider {
   }
 
   @ParameterizedTest
+  @Disabled
   @ArgumentsSource(SolutionTest.class)
   void larrysArray(String expected, int[] input) {
     Assertions.assertEquals(expected, Solution.larrysArray(input));
