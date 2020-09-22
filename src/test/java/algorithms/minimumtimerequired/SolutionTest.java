@@ -14,6 +14,7 @@ public class SolutionTest implements ArgumentsProvider {
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
     return Stream.of(
+      Arguments.of(8L, new long[]{2, 3, 2}, 10L),
       Arguments.of(6L, new long[]{2, 3}, 5L),
       Arguments.of(7L, new long[]{1, 3, 4}, 10L),
       Arguments.of(20L, new long[]{4, 5, 6}, 12L)

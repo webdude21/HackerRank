@@ -3,14 +3,33 @@ package algorithms.minimumtimerequired;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
 
   private static final Scanner scanner = new Scanner(System.in);
 
-  static long minTime(long[] machines, long goal) {
-    return 0;
+  static long minTime(long[] machineItemsPerDays, long goal) {
+    long itemsProduced = 0;
+    long daysTakenToReachTheGoal = 0;
+    long[] machineProgress = Arrays.copyOf(machineItemsPerDays, machineItemsPerDays.length);
+
+    while (itemsProduced < goal) {
+      for (int i = 0; i < machineProgress.length; i++) {
+        if (machineProgress[i] > 0) {
+          machineProgress[i]--;
+        }
+        if (machineProgress[i] == 0) {
+          itemsProduced++;
+          machineProgress[i] = machineItemsPerDays[i];
+        }
+      }
+
+      daysTakenToReachTheGoal++;
+    }
+
+    return daysTakenToReachTheGoal;
   }
 
   public static void main(String[] args) throws IOException {
