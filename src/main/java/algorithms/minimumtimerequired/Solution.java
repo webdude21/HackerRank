@@ -10,26 +10,27 @@ public class Solution {
 
   private static final Scanner scanner = new Scanner(System.in);
 
-  static long minTime(long[] machineItemsPerDays, long goal) {
-    long itemsProduced = 0;
-    long daysTakenToReachTheGoal = 0;
-    long[] machineProgress = Arrays.copyOf(machineItemsPerDays, machineItemsPerDays.length);
+  static long minTime(long[] machines, long goal) {
+    Arrays.sort(machines);
+    long max = machines[machines.length - 1];
+    long minDays = 0;
+    long maxDays = max * goal;
+    long result = 0;
 
-    while (itemsProduced < goal) {
-      for (int i = 0; i < machineProgress.length; i++) {
-        if (machineProgress[i] > 0) {
-          machineProgress[i]--;
-        }
-        if (machineProgress[i] == 0) {
-          itemsProduced++;
-          machineProgress[i] = machineItemsPerDays[i];
-        }
+    while (minDays < maxDays) {
+      long mid = (minDays + maxDays) / 2;
+      long unit = 0;
+      for (long machine : machines) {
+        unit += mid / machine;
       }
-
-      daysTakenToReachTheGoal++;
+      if (unit < goal) {
+        minDays = mid + 1;
+      } else {
+        result = mid;
+        maxDays = mid;
+      }
     }
-
-    return daysTakenToReachTheGoal;
+    return result;
   }
 
   public static void main(String[] args) throws IOException {
