@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Solution {
 
-  private static Tree<Integer> tree = new Tree<>();
+  private static final Tree<Integer> tree = new Tree<>();
 
   private static Scanner scanner;
 

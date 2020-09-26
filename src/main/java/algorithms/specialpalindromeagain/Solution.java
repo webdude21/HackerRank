@@ -93,7 +93,7 @@ public class Solution {
   }
 
   static class Pair {
-    private char letter;
+    private final char letter;
     private int count;
 
     Pair(char letter, int count) {

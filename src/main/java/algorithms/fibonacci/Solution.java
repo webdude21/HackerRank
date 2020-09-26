@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Solution {
-  private static Map<Long, Long> cache = new HashMap<>();
+  private static final Map<Long, Long> cache = new HashMap<>();
 
   public static void main(String[] args) {
     System.out.print(memoizedFib(4000));

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class Tree<T extends Comparable<T>> implements Iterable<Node<T>> {
 
-  private Map<T, Node<T>> nodeMap = new HashMap<>();
+  private final Map<T, Node<T>> nodeMap = new HashMap<>();
 
   public Node<T> getNode(T value) {
     if (!nodeMap.containsKey(value)) {

@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Solution {
 
+  private static final Scanner scanner = new Scanner(System.in);
+
   static int findMedian(int[] input) {
     Arrays.sort(input);
     return input[input.length / 2];
   }
-
-  private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) throws IOException {
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));

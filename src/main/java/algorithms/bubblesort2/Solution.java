@@ -47,7 +47,19 @@ class Solution {
   }
 
   static class BubbleSortResult {
-    private int swaps;
+    private final int swaps;
+    private final int firstElement;
+    private final int lastElement;
+
+    private BubbleSortResult(int swaps, int firstElement, int lastElement) {
+      this.swaps = swaps;
+      this.firstElement = firstElement;
+      this.lastElement = lastElement;
+    }
+
+    public static BubbleSortResult of(int swaps, int firstElement, int lastElement) {
+      return new BubbleSortResult(swaps, firstElement, lastElement);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -70,19 +82,6 @@ class Solution {
     @Override
     public int hashCode() {
       return Objects.hash(getSwaps(), getFirstElement(), getLastElement());
-    }
-
-    private int firstElement;
-    private int lastElement;
-
-    private BubbleSortResult(int swaps, int firstElement, int lastElement) {
-      this.swaps = swaps;
-      this.firstElement = firstElement;
-      this.lastElement = lastElement;
-    }
-
-    public static BubbleSortResult of(int swaps, int firstElement, int lastElement) {
-      return new BubbleSortResult(swaps, firstElement, lastElement);
     }
 
     int getSwaps() {

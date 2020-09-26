@@ -16,35 +16,6 @@ public class Solution {
     this.resultStore = resultStore;
   }
 
-  enum CommandType {
-    INSERT(1),
-    DELETE(2),
-    QUERY(3);
-
-    private int commandAsInt;
-
-    CommandType(int commandAsInt) {
-      this.commandAsInt = commandAsInt;
-    }
-
-    static CommandType valueOf(int commandAsInt) {
-      switch (commandAsInt) {
-        case 1:
-          return INSERT;
-        case 2:
-          return DELETE;
-        case 3:
-          return QUERY;
-        default:
-          throw new IllegalArgumentException(commandAsInt + " is not a valid command type!");
-      }
-    }
-
-    public int getCommandAsInt() {
-      return commandAsInt;
-    }
-  }
-
   public static void main(String[] args) throws IOException {
     try (BufferedReader bufferedReader = new BufferedReader(
       new InputStreamReader(System.in))) {
@@ -97,7 +68,48 @@ public class Solution {
     occurrenceMap.computeIfPresent(argument, (key, value) -> value + 1);
   }
 
+  enum CommandType {
+    INSERT(1),
+    DELETE(2),
+    QUERY(3);
+
+    private final int commandAsInt;
+
+    CommandType(int commandAsInt) {
+      this.commandAsInt = commandAsInt;
+    }
+
+    static CommandType valueOf(int commandAsInt) {
+      switch (commandAsInt) {
+        case 1:
+          return INSERT;
+        case 2:
+          return DELETE;
+        case 3:
+          return QUERY;
+        default:
+          throw new IllegalArgumentException(commandAsInt + " is not a valid command type!");
+      }
+    }
+
+    public int getCommandAsInt() {
+      return commandAsInt;
+    }
+  }
+
   static class Command {
+    private final CommandType type;
+    private final int argument;
+
+    Command(CommandType commandType, int argument) {
+      type = commandType;
+      this.argument = argument;
+    }
+
+    public static Command of(int commandAsInt, int argument) {
+      return new Command(CommandType.valueOf(commandAsInt), argument);
+    }
+
     @Override
     public String toString() {
       return "Tuple{" +
@@ -118,18 +130,6 @@ public class Solution {
     @Override
     public int hashCode() {
       return Objects.hash(type, argument);
-    }
-
-    private final CommandType type;
-    private final int argument;
-
-    Command(CommandType commandType, int argument) {
-      type = commandType;
-      this.argument = argument;
-    }
-
-    public static Command of(int commandAsInt, int argument) {
-      return new Command(CommandType.valueOf(commandAsInt), argument);
     }
   }
 }

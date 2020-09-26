@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Solution {
+  private static final Scanner scanner = new Scanner(System.in);
+
   static int[] closestNumbers(int[] input) {
     Arrays.sort(input);
     List<Integer> result = new ArrayList<>();
@@ -27,8 +29,6 @@ public class Solution {
 
     return result.stream().mapToInt(i -> i).toArray();
   }
-
-  private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) throws IOException {
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));

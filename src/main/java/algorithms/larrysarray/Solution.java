@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class Solution {
 
-  private static int MAX_ROTATIONS = 3;
+  private static final Scanner scanner = new Scanner(System.in);
+  private static final int MAX_ROTATIONS = 3;
 
   static String larrysArray(int[] input) {
     for (int i = 2; i < input.length; i++) {
@@ -50,8 +51,6 @@ public class Solution {
 
     return true;
   }
-
-  private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) throws IOException {
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
