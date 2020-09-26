@@ -9,23 +9,21 @@ public class Solution {
   private static final int PRINT = 3;
 
   private static final String WHITE_SPACE = "\\s+";
-
+  private static final Scanner scanner = new Scanner(System.in);
   private static Stack<Integer> head;
   private static Stack<Integer> tail;
 
-  private static final Scanner scanner = new Scanner(System.in);
-
   public static void main(String[] args) {
-    int queries = Integer.valueOf(scanner.nextLine());
+    int queries = Integer.parseInt(scanner.nextLine());
     int[][] parsedQueries = new int[queries][];
 
     for (int i = 0; i < queries; i++) {
       final String[] query = scanner.nextLine().split(WHITE_SPACE);
       int[] parsedQuery = new int[2];
-      parsedQuery[0] = Integer.valueOf(query[0]);
+      parsedQuery[0] = Integer.parseInt(query[0]);
 
       if (query.length > 1) {
-        parsedQuery[1] = Integer.valueOf(query[1]);
+        parsedQuery[1] = Integer.parseInt(query[1]);
       }
 
       parsedQueries[i] = parsedQuery;

@@ -13,6 +13,28 @@ import java.util.stream.Stream;
 
 class SolutionTest implements ArgumentsProvider {
 
+  @Override
+  public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
+    return Stream.of(
+      Arguments.of("Impressed", new String[]{
+        "*.M",
+        ".X."
+      }, 1),
+      Arguments.of("Impressed", new String[]{
+        ".X.X......X",
+        ".X*.X.XXX.X",
+        ".XX.X.XM...",
+        "......XXXX."
+      }, 3),
+      Arguments.of("Oops!", new String[]{
+        ".X.X......X",
+        ".X*.X.XXX.X",
+        ".XX.X.XM...",
+        "......XXXX."
+      }, 4)
+    );
+  }
+
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
   void countLuck(String expected, String[] matrix, int k) {
@@ -49,27 +71,5 @@ class SolutionTest implements ArgumentsProvider {
     final Optional<Solution.Point> actualPorkerPosition = Solution.getPortkeyPoint(testMatrix);
     Assertions.assertTrue(actualPorkerPosition.isPresent());
     Assertions.assertEquals(expected, actualPorkerPosition.get());
-  }
-
-  @Override
-  public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
-    return Stream.of(
-      Arguments.of("Impressed", new String[]{
-        "*.M",
-        ".X."
-      }, 1),
-      Arguments.of("Impressed", new String[]{
-        ".X.X......X",
-        ".X*.X.XXX.X",
-        ".XX.X.XM...",
-        "......XXXX."
-      }, 3),
-      Arguments.of("Oops!", new String[]{
-        ".X.X......X",
-        ".X*.X.XXX.X",
-        ".XX.X.XM...",
-        "......XXXX."
-      }, 4)
-    );
   }
 }

@@ -13,7 +13,6 @@ class Solution {
     int nodeCount = scanner.nextInt();
     int edges = scanner.nextInt();
 
-
     for (int i = 0; i < edges; i++) {
       addConnection(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
     }
@@ -27,5 +26,4 @@ class Solution {
     connectionsList.putIfAbsent(id, new HashMap<>());
     return connectionsList.get(id);
   }
-
 }
