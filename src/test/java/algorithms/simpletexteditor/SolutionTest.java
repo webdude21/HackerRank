@@ -16,7 +16,7 @@ public class SolutionTest implements ArgumentsProvider {
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
     return Stream.of(
-      Arguments.of(String.join(System.lineSeparator(), "cya".split("")), Arrays.asList(
+      Arguments.of(String.join(System.lineSeparator(), "c", "y", "a"), Arrays.asList(
         Arrays.asList("1", "abc"),
         Arrays.asList("3", "3"),
         Arrays.asList("2", "3"),
