@@ -16,7 +16,7 @@ public class SolutionTest implements ArgumentsProvider {
   @Override
   public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
     return Stream.of(
-      Arguments.of(new char[]{'c', 'y', 'a'}, Arrays.asList(
+      Arguments.of(String.join(System.lineSeparator(), "cya".split("")), Arrays.asList(
         Arrays.asList("1", "abc"),
         Arrays.asList("3", "3"),
         Arrays.asList("2", "3"),
@@ -30,7 +30,7 @@ public class SolutionTest implements ArgumentsProvider {
 
   @ParameterizedTest
   @ArgumentsSource(SolutionTest.class)
-  void simpleTextEditorTest(char[] expected, List<List<String>> input) {
-    Assertions.assertArrayEquals(expected, Solution.executeCommands(input));
+  void simpleTextEditorTest(String expected, List<List<String>> input) {
+    Assertions.assertEquals(expected, Solution.executeCommands(input));
   }
 }
