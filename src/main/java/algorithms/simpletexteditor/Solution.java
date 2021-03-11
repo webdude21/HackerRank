@@ -1,6 +1,5 @@
 package algorithms.simpletexteditor;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Solution {
@@ -8,9 +7,8 @@ public class Solution {
   private static StringBuilder result;
   private static StringBuilder sb;
 
-  public static void main(String[] args) throws FileNotFoundException {
-  Scanner scanner = new Scanner(System.in);
-//    Scanner scanner = new Scanner(new FileInputStream("/home/webdude/Documents/Projects/HackerRank/input10.txt"));
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
     int linesOfInput = Integer.parseInt(scanner.nextLine());
     List<List<String>> commands = new ArrayList<>();
 
@@ -37,24 +35,25 @@ public class Solution {
     System.out.println(sb.toString());
   }
 
-  public static char[] executeCommands(List<List<String>> input) {
+  public static char[] executeCommands(List<List<String>> commands) {
     result = new StringBuilder();
 
-    Deque<Command> commandQueue = new LinkedList<>();
+    Deque<String> state = new LinkedList<>();
 
-    for (List<String> strings : input) {
+    state.push("");
+
+    for (List<String> strings : commands) {
       Command command = parseCommand(strings);
       switch (command.getCommandCode()) {
         case Command.APPEND:
         case Command.DELETE:
-          commandQueue.add(command);
+          state.push(renderState(command, state.peek()));
           break;
         case Command.UNDO:
-          commandQueue.pollLast();
+          state.pop();
           break;
         case Command.PRINT:
-          renderState(commandQueue);
-          print(command.commandArgument);
+          print(Objects.requireNonNull(state.peek()), command.commandArgument);
           break;
       }
     }
@@ -62,16 +61,18 @@ public class Solution {
     return result.toString().toCharArray();
   }
 
-  private static void renderState(Queue<Command> commandQueue) {
-    sb = new StringBuilder();
+  private static String renderState(Command command, String currentState) {
+    sb = new StringBuilder(currentState);
 
-    commandQueue.forEach(command -> {
-      if (command.getCommandCode().equals(Command.APPEND)) {
-        append(command.commandArgument);
-      } else if (command.getCommandCode().equals(Command.DELETE)) {
-        delete(command.commandArgument);
-      }
-    });
+    final String commandCode = command.getCommandCode();
+    final String commandArgument = command.commandArgument;
+    if (commandCode.equals(Command.APPEND)) {
+      append(commandArgument);
+    } else if (commandCode.equals(Command.DELETE)) {
+      delete(commandArgument);
+    }
+
+    return sb.toString();
   }
 
   private static void append(String commandArgument) {
@@ -82,8 +83,8 @@ public class Solution {
     sb.delete(sb.length() - Integer.parseInt(commandArgument), sb.length());
   }
 
-  private static void print(String charToPrint) {
-    result.append(sb.charAt(Integer.parseInt(charToPrint) - 1));
+  private static void print(String currentState, String charToPrint) {
+    result.append(currentState.charAt(Integer.parseInt(charToPrint) - 1));
   }
 
   private static Command parseCommand(List<String> input) {
