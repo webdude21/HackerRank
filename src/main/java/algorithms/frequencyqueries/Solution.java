@@ -11,6 +11,7 @@ public class Solution {
   static final String NOT_FOUND = "0";
   private final ArrayList<String> resultStore;
   private final Map<Integer, Integer> occurrenceMap = new HashMap<>();
+  private final Map<Integer, Integer> reverseOccurrenceMap = new HashMap<>();
 
   public Solution(ArrayList<String> resultStore) {
     this.resultStore = resultStore;
@@ -39,8 +40,6 @@ public class Solution {
   }
 
   private void interpretCommand(Command command, int argument) {
-    occurrenceMap.putIfAbsent(argument, 0);
-
     switch (command.type) {
       case INSERT:
         insert(argument);
@@ -55,17 +54,35 @@ public class Solution {
   }
 
   private void query(int argument) {
-    boolean found = occurrenceMap.entrySet().stream()
-      .anyMatch(keyValuePair -> keyValuePair.getValue().equals(argument));
-    resultStore.add(found ? FOUND : NOT_FOUND);
+    resultStore.add(reverseOccurrenceMap.containsKey(argument) ? FOUND : NOT_FOUND);
+  }
+
+  private void updateReverseMap(int oldValue, int newValue) {
+    reverseOccurrenceMap.computeIfPresent(oldValue, (key, value) -> value > 1 ? value - 1 : null);
+    reverseOccurrenceMap.compute(newValue, (key, value) -> value == null ? 1 : value + 1);
   }
 
   private void delete(int argument) {
-    occurrenceMap.computeIfPresent(argument, (key, value) -> value > 0 ? value - 1 : 0);
+    occurrenceMap.computeIfPresent(argument, (key, value) -> {
+      if (value > 0) {
+        updateReverseMap(value, value - 1);
+        return value - 1;
+      } else {
+        return null;
+      }
+    });
   }
 
   private void insert(int argument) {
-    occurrenceMap.computeIfPresent(argument, (key, value) -> value + 1);
+    occurrenceMap.compute(argument, (key, value) -> {
+      if (value == null) {
+        updateReverseMap(0, 1);
+        return 1;
+      } else {
+        updateReverseMap(value, value + 1);
+        return value + 1;
+      }
+    });
   }
 
   enum CommandType {
