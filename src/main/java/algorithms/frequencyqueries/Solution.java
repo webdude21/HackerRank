@@ -9,60 +9,61 @@ public class Solution {
 
   static final String FOUND = "1";
   static final String NOT_FOUND = "0";
-  private final ArrayList<String> resultStore;
-  private final Map<Integer, Integer> occurrenceMap = new HashMap<>();
-  private final Map<Integer, Integer> reverseOccurrenceMap = new HashMap<>();
-
-  public Solution(ArrayList<String> resultStore) {
-    this.resultStore = resultStore;
-  }
+  private static final ArrayList<String> resultStore = new ArrayList<>();
+  private static final Map<Integer, Integer> occurrenceMap = new HashMap<>();
+  private static final Map<Integer, Integer> reverseOccurrenceMap = new HashMap<>();
 
   public static void main(String[] args) throws IOException {
     try (BufferedReader bufferedReader = new BufferedReader(
       new InputStreamReader(System.in))) {
 
       int q = Integer.parseInt(bufferedReader.readLine().trim());
-      Command[] commands = new Command[q];
 
       for (int i = 0; i < q; i++) {
         String[] query = bufferedReader.readLine().split(" ");
-        commands[i] = Command.of(Integer.parseInt(query[0]), Integer.parseInt(query[1]));
+        interpretCommand(Command.of(Integer.parseInt(query[0]), Integer.parseInt(query[1])));
       }
 
-      System.out.println(String.join(System.lineSeparator(), frequencyQuery(commands)));
+      System.out.println(String.join(System.lineSeparator(), resultStore));
     }
   }
 
-  static List<String> frequencyQuery(Command[] input) {
-    Solution solution = new Solution(new ArrayList<>());
-    Arrays.stream(input).forEach(command -> solution.interpretCommand(command, command.argument));
-    return solution.resultStore;
+  public static List<String> frequencyQuery(Command[] input) {
+    clearState();
+    Arrays.stream(input).forEach(Solution::interpretCommand);
+    return resultStore;
   }
 
-  private void interpretCommand(Command command, int argument) {
+  private static void clearState() {
+    resultStore.clear();
+    occurrenceMap.clear();
+    reverseOccurrenceMap.clear();
+  }
+
+  private static void interpretCommand(Command command) {
     switch (command.type) {
       case INSERT:
-        insert(argument);
+        insert(command.argument);
         break;
       case DELETE:
-        delete(argument);
+        delete(command.argument);
         break;
       case QUERY:
-        query(argument);
+        query(command.argument);
         break;
     }
   }
 
-  private void query(int argument) {
+  private static void query(int argument) {
     resultStore.add(reverseOccurrenceMap.containsKey(argument) ? FOUND : NOT_FOUND);
   }
 
-  private void updateReverseMap(int oldValue, int newValue) {
+  private static void updateReverseMap(int oldValue, int newValue) {
     reverseOccurrenceMap.computeIfPresent(oldValue, (key, value) -> value > 1 ? value - 1 : null);
     reverseOccurrenceMap.compute(newValue, (key, value) -> value == null ? 1 : value + 1);
   }
 
-  private void delete(int argument) {
+  private static void delete(int argument) {
     occurrenceMap.computeIfPresent(argument, (key, value) -> {
       if (value > 0) {
         updateReverseMap(value, value - 1);
@@ -73,7 +74,7 @@ public class Solution {
     });
   }
 
-  private void insert(int argument) {
+  private static void insert(int argument) {
     occurrenceMap.compute(argument, (key, value) -> {
       if (value == null) {
         updateReverseMap(0, 1);
@@ -108,10 +109,6 @@ public class Solution {
           throw new IllegalArgumentException(commandAsInt + " is not a valid command type!");
       }
     }
-
-    public int getCommandAsInt() {
-      return commandAsInt;
-    }
   }
 
   static class Command {
@@ -125,28 +122,6 @@ public class Solution {
 
     public static Command of(int commandAsInt, int argument) {
       return new Command(CommandType.valueOf(commandAsInt), argument);
-    }
-
-    @Override
-    public String toString() {
-      return "Tuple{" +
-        "a=" + type +
-        ", b=" + argument +
-        '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (!(o instanceof Command)) return false;
-      Command command = (Command) o;
-      return type == command.type &&
-        argument == command.argument;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(type, argument);
     }
   }
 }
