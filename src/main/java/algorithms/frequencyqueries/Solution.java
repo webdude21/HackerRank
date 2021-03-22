@@ -9,6 +9,9 @@ public class Solution {
 
   static final String FOUND = "1";
   static final String NOT_FOUND = "0";
+  static final int INSERT = 1;
+  static final int DELETE = 2;
+  static final int QUERY = 3;
   private static final ArrayList<String> resultStore = new ArrayList<>();
   private static final Map<Integer, Integer> occurrenceMap = new HashMap<>();
   private static final Map<Integer, Integer> reverseOccurrenceMap = new HashMap<>();
@@ -20,15 +23,14 @@ public class Solution {
       int q = Integer.parseInt(bufferedReader.readLine().trim());
 
       for (int i = 0; i < q; i++) {
-        String[] query = bufferedReader.readLine().split(" ");
-        interpretCommand(Command.of(Integer.parseInt(query[0]), Integer.parseInt(query[1])));
+        interpretCommand(bufferedReader.readLine());
       }
 
       System.out.println(String.join(System.lineSeparator(), resultStore));
     }
   }
 
-  public static List<String> frequencyQuery(Command[] input) {
+  public static List<String> frequencyQuery(String[] input) {
     clearState();
     Arrays.stream(input).forEach(Solution::interpretCommand);
     return resultStore;
@@ -40,17 +42,23 @@ public class Solution {
     reverseOccurrenceMap.clear();
   }
 
-  private static void interpretCommand(Command command) {
-    switch (command.type) {
+  private static void interpretCommand(String commandString) {
+    String[] query = commandString.split(" ");
+    int command = Integer.parseInt(query[0]);
+    int argument = Integer.parseInt(query[1]);
+
+    switch (command) {
       case INSERT:
-        insert(command.argument);
+        insert(argument);
         break;
       case DELETE:
-        delete(command.argument);
+        delete(argument);
         break;
       case QUERY:
-        query(command.argument);
+        query(argument);
         break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + command);
     }
   }
 
@@ -84,38 +92,5 @@ public class Solution {
         return value + 1;
       }
     });
-  }
-
-  enum CommandType {
-    INSERT,
-    DELETE,
-    QUERY;
-
-    static CommandType valueOf(int commandAsInt) {
-      switch (commandAsInt) {
-        case 1:
-          return INSERT;
-        case 2:
-          return DELETE;
-        case 3:
-          return QUERY;
-        default:
-          throw new IllegalArgumentException(commandAsInt + " is not a valid command type!");
-      }
-    }
-  }
-
-  static class Command {
-    private final CommandType type;
-    private final int argument;
-
-    Command(CommandType commandType, int argument) {
-      type = commandType;
-      this.argument = argument;
-    }
-
-    public static Command of(int commandAsInt, int argument) {
-      return new Command(CommandType.valueOf(commandAsInt), argument);
-    }
   }
 }
