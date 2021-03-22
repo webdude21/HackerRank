@@ -87,15 +87,9 @@ public class Solution {
   }
 
   enum CommandType {
-    INSERT(1),
-    DELETE(2),
-    QUERY(3);
-
-    private final int commandAsInt;
-
-    CommandType(int commandAsInt) {
-      this.commandAsInt = commandAsInt;
-    }
+    INSERT,
+    DELETE,
+    QUERY;
 
     static CommandType valueOf(int commandAsInt) {
       switch (commandAsInt) {
